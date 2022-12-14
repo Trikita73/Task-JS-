@@ -1,4 +1,59 @@
-// Task: 3 (object: constant)
+/* << if...else >> */
+
+// << Task: 1 (prompt ask me)
+
+/*
+
+let value = prompt('What you are learn?');
+
+if(value == 'JavaScript') {
+	alert('Yes');
+}else{
+	alert('No');
+}
+
+*/
+
+// << Task: 2 (if in ?)
+
+/*let result;
+if (a + b < 4) {
+  result = 'less';
+} else {
+  result = 'more';
+}*/ 
+
+/*
+
+result = (a + b < 4) ? 'less' : 'more';
+
+*/
+
+// << Task: 3 (if in ?)
+
+/*let message;
+if (login == 'Сотрудник') {
+  message = 'Привет';
+} else if (login == 'Директор') {
+  message = 'Здравствуйте';
+} else if (login == '') {
+  message = 'Нет логина';
+} else {
+  message = '';
+}*/
+
+/*
+
+let message = (login == 'Сотрудник') ? 'Привет' :
+  (login == 'Директор') ? 'Здравствуйте' :
+  (login == '') ? 'Нет логина' :
+  '';
+
+*/
+
+/* << Object >> */
+
+// << Task: 3 (object: constant)
 
 /*
 
@@ -12,7 +67,7 @@ console.log(user.name);
 
 */
 
-// Task 4 (object: sum)
+// << Task 4 (object: sum)
 
 /*
 
@@ -31,7 +86,9 @@ let sum = 0;
 
 */
 
-// Task 5 (object: *)
+// << Task 5 (object: *)
+
+/*
 
 let menu = {
 	width: 200,
@@ -48,3 +105,5 @@ function multiplyNumeric(menu) {
 }
 
 console.log(menu);
+
+*/
