@@ -51,6 +51,28 @@ let message = (login == 'Сотрудник') ? 'Привет' :
 
 */
 
+// << Task: 4 (if...else)
+
+/*
+let login = prompt('Enter Login', '');
+
+if(login == 'admin') {
+	let password = prompt('Enter password');
+
+	if(password == 'password') {
+		alert('Hello Admin');
+	}else if(password =='' || password == null){
+		alert('Exit');
+	}else {
+		alert('Wrong passord');
+	}
+}else if(login == '' || login == null) {
+	alert('Exit');
+}else{
+	alert('Wrong login');
+}
+*/
+
 /* << Object >> */
 
 // << Task: 3 (object: constant)
