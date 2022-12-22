@@ -73,6 +73,132 @@ if(login == 'admin') {
 }
 */
 
+// << Task: 5 (if...else ?, :)
+
+/*
+function checkAge(age) {
+	if (age > 18) {
+	  return true;
+	} else {
+	  return confirm('Родители разрешили?');
+	}
+  }
+  
+  function checkAge(age) {
+	  return (age > 18) ? true :  confirm('Родители разрешили?');
+  }
+*/
+
+/* << function >> */
+
+// << Task: 1
+
+/*
+function main(a, b) {
+	let a = 2;
+	let b = 5;
+	if(a < b) {
+		// console.log(a);
+		// return a;
+		alert(a);
+	}else {
+		// return b;
+		console.log(b);
+	}
+}
+*/
+
+// << Task: 2
+
+/*
+function pow(x, n) {
+	let resultx = prompt('x?', '');
+	let resultn = prompt('n?', '');
+	console.log('x**n');
+}
+*/
+
+
+/* << while, do...while, for >> */
+
+// << Task: 1 (for)
+
+/*
+for(let i = 0; i < 5; ++i) {
+	alert(i);
+}
+
+for(let i = 0; i < 5; i++) {
+	alert(i);
+}
+*/
+
+// << Task: 2 (for, чётные числа от 2 до 10)
+
+/*
+for(let i = 0; i <= 10; ++i) {
+	if(i % 2 == 0) {
+		alert(i);
+	}
+}
+*/
+
+// << Task: 3 (while)
+
+/*
+let i = 0;
+while(i < 3) {
+	alert(`number ${i}!`);
+	i++;
+}
+*/
+
+// << Task: 4 (prompt ввести число, большее 100)
+
+/* ERROR!!!!!!!!!
+let num = prompt('Enter number more than 100', 0);
+
+for(let num = 101; num >= 100;) {
+	if(num => 100) {
+		alert('Nice Choice');
+	}else if(num == null || num == '') {
+		alert('Good bye')
+	}else {
+		alert('You are creazy?')
+	}
+}
+*/
+
+/* 
+let num;
+
+do {
+	num = prompt('Enter num more 100', 0);
+}while(num >= 100 && num);
+*/
+
+/*
+while (true) {
+	let number = prompt('Enter num more 100: ');
+	if (number >=100 || !number)break
+}
+*/
+
+// << Task: 5 ()
+
+/*
+let n = 10; 
+
+nextPrime:
+for(let i = 2; i <= n; i++) {
+	for(let j = 2; j < i; j++) {
+		if(i % j == 0) continue nextPrime;
+	}
+	alert(i);
+}
+*/
+
+
 /* << Object >> */
 
 // << Task: 3 (object: constant)
@@ -129,3 +255,4 @@ function multiplyNumeric(menu) {
 console.log(menu);
 
 */
+
