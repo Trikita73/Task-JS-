@@ -155,10 +155,12 @@ while(i < 3) {
 
 // << Task: 4 (prompt ввести число, большее 100)
 
-/* ERROR!!!!!!!!!
-let num = prompt('Enter number more than 100', 0);
 
-for(let num = 101; num >= 100;) {
+/* ERROR >>>
+let num;
+
+for(; num >= 100;) {
+	let num = prompt('Enter number more than 100', 0);
 	if(num => 100) {
 		alert('Nice Choice');
 	}else if(num == null || num == '') {
