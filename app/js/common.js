@@ -89,6 +89,63 @@ function checkAge(age) {
   }
 */
 
+// << Task: 6 (if...else)
+
+/*
+let browser = prompt('Which browser you are use?', '');
+
+if(browser === 'Edge') {
+	alert('You have got the Edge');
+}else if(browser === 'Chorme' || browser === 'Firefox' || browser === 'Safari' || browser === 'Opera') {
+	alert('Okay we support this browsers too');
+}else {
+	alert('We hope this page look nice!');
+}
+*/
+
+/* << switch >> */
+
+// << Task: 1 (switch)
+
+/*
+const number = +prompt('Enter number beetwen 0 and 3', '');
+
+switch(number) {
+	case 0:
+		alert('You are enter number 0');
+		break;
+	case 1:
+		alert('You are enter number 1');
+		break;
+	case 2:
+	case 3:
+		alert('You are enter number 2 or maybe number 3');
+		break;
+	default:
+		alert('Are you sure what that a wrong number?');
+}
+*/
+
+// << Task: 2 (switch)
+
+/*
+switch (browser) {
+	case 'Edge':
+	  alert( "You've got the Edge!" );
+	  break;
+  
+	case 'Chrome':
+	case 'Firefox':
+	case 'Safari':
+	case 'Opera':
+	  alert( 'Okay we support these browsers too' );
+	  break;
+  
+	default:
+	  alert( 'We hope that this page looks ok!' );
+  }
+*/
+
 /* << function >> */
 
 // << Task: 1
