@@ -1,3 +1,11 @@
+/* <<  >> */
+
+/*
+let a = 2;
+
+alert(x = 1 + (a *= 2));
+*/
+
 /* << if...else >> */
 
 // << Task: 1 (prompt ask me)
@@ -348,6 +356,72 @@ for(let i = 2; i <= n; i++) {
 }
 */
 
+
+/* << Object >> */
+
+// << Task: 1 (object)
+
+/*
+let friuts = ["Apple", "Orange", "Kivi"];
+
+let shoopingCart = friuts;
+shoopingCart.push("Banana");
+
+alert(friuts.length);
+*/
+
+// << Task: 2 (object)
+
+/*
+let styles = ["Djaz", "Bjuze"];
+
+styles.push("ROK");
+
+styles[Math.floor((styles.length -1) / 2)] = "Klassic";
+
+//alert(styles.shift());
+
+styles.shift("Djaz", "Bjuze");
+
+styles.unshift("RAP", "Reggi");
+
+alert(styles);
+*/
+
+// << Task: 3 (object)
+
+/*
+let arr = ["a", "b"];
+
+arr.push(function() {
+	alert(this);
+});
+
+arr[2]();
+*/
+
+// << Task: 4 (object)
+
+/*
+function sumInput() {
+	let numbers = [];
+	while(true) {
+		let value = prompt('Enter', '0');
+		if(value === '' || value === null || !isFinite(value)) break; 
+			numbers.push(+value);
+	}
+
+	let sum = 0;
+		for(let number of numbers) {
+			sum += number;
+		}
+	return sum;
+}
+
+// << Task: 5 (object)
+
+alert(sumInput());
+*/
 
 /* << Object >> */
 
