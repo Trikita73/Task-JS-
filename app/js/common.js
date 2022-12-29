@@ -103,6 +103,44 @@ if(browser === 'Edge') {
 }
 */
 
+// << Task: 6 (if...else)
+
+/*
+let age = prompt('Enter age', '');
+
+if(age >= 14 && age <= 90) {
+	alert('Nice age! I can buy beer!');
+}else if(age <= 14) {
+	alert('You are so young!');
+}else if(age >= 90) {
+	alert('You are so old!');
+}
+*/
+
+// << Task: 7 (if...else)
+
+/*
+let age = prompt('Enter age', '');
+
+if(!(age >= 14 &&  age <= 90)) {
+	alert('Nice!');
+}else {
+	alert('Bad!');
+}
+*/
+
+// << Task: 8 (if...else)
+
+/*
+let age = prompt('Enter age', '');
+
+if(age <= 14 || age >= 90) {
+	alert('Nice!');
+}else {
+	alert('Bad!');
+}
+*/
+
 /* << switch >> */
 
 // << Task: 1 (switch)
@@ -165,6 +203,14 @@ function main(a, b) {
 }
 */
 
+/*
+function min(a, b) {
+	let a = 2;
+	let b = 5;
+	return a < b ? a : b;
+}
+*/
+
 // << Task: 2
 
 /*
@@ -175,6 +221,51 @@ function pow(x, n) {
 }
 */
 
+// << Task: 3 (Function Expression => e)
+
+/*
+function ask(question, yes, no) {
+	if(confirm(question)) yes()
+	else no();
+}
+
+ask(
+	"You agree?",
+	function() {
+		alert("You are complited");
+	} 
+	function() {
+		alert("You esc!");
+	}
+);
+
+ask(
+	"You agree?",
+	() => alert("You are complited");
+	() => alert("You esc!");
+);
+*/
+
+// << Task: 4 ()
+
+/*
+function pow(x, n) {
+	let result = x;
+	
+	for(let i = 1; i < n; i++) {
+		result *= x;
+	}
+	return result;
+}
+
+let x = prompt('Enter number x', '');
+let n = prompt('Enter number y', '');
+if(n < 1) {
+	alert(`${n} don't support!`);
+}else {
+	alert(pow(x, n));
+}
+*/
 
 /* << while, do...while, for >> */
 
