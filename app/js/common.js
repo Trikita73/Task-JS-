@@ -418,10 +418,62 @@ function sumInput() {
 	return sum;
 }
 
-// << Task: 5 (object)
-
 alert(sumInput());
 */
+
+// << Task: 5 (object)
+/*
+function getMaxSubSum(arr) {
+	let maxSum = 0; // если элементов не будет - возвращаем 0
+  
+	for (let i = 0; i < arr.length; i++) {
+	  let sumFixedStart = 0;
+	  for (let j = i; j < arr.length; j++) {
+		sumFixedStart += arr[j];
+		maxSum = Math.max(maxSum, sumFixedStart);
+	  }
+	}
+  
+	return maxSum;
+  }
+  
+  alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+*/
+
+/*
+function getMaxSubSum(arr) {
+	let maxSum = 0;
+	let partialSum = 0;
+
+	for(let item of arr) {
+		partialSum += item;
+		maxSum = Math.max(maxSum, partialSum);
+		if(partialSum < 0) partialSum =0;
+	}
+	return maxSum;
+}
+
+alert(getMaxSubSum([-1, 2, 4, 55]));
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* << Object >> */
 
