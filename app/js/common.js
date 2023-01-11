@@ -357,7 +357,7 @@ for(let i = 2; i <= n; i++) {
 */
 
 
-/* << Object >> */
+/* << Arrays >> */
 
 // << Task: 1 (object)
 
@@ -456,24 +456,7 @@ function getMaxSubSum(arr) {
 alert(getMaxSubSum([-1, 2, 4, 55]));
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 /* << Object >> */
 
@@ -531,4 +514,37 @@ function multiplyNumeric(menu) {
 console.log(menu);
 
 */
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* << Special Task >> */
+
+/* << Task Factorial >> */
+
+let n = prompt('Enter', '');
+let facNum = 1;
+	for(let i = 1; i <= n; i++) {
+		facNum = facNum * i;
+	}
+alert(facNum);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
