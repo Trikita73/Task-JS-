@@ -521,14 +521,47 @@ console.log(menu);
 
 /* << Task Factorial >> */
 
+/*
 let n = prompt('Enter', '');
 let facNum = 1;
 	for(let i = 1; i <= n; i++) {
 		facNum = facNum * i;
 	}
 alert(facNum);
+*/
+
+/* << Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом >> */
+
+/*
+let str = prompt('Enter', '');
+function ucFirst(str) {
+	if(str) {
+		return str;
+	}
+	return str[0].toUppperCase() + str.slice(1);
+}
+*/
 
 
+/* << Напишите функцию checkSpam(str), возвращающую true, если str содержит '1xBet' или 'XXX', а иначе false >> */
+
+/*
+function checkSpam(str) {
+	let checkStr = str.toLowerCase();
+	return checkStr.includes('1xbet') || checkStr.includes('xxx');
+}
+*/
+
+/* << Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength. >> */
+
+/*
+function truncate(str, maxlength) {
+	if(str.lenght > maxlength) {
+		return (str.slice(0, maxlength -1) + '...');
+	}
+	return str;
+}
+*/
 
 
 
