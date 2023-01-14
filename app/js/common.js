@@ -563,9 +563,28 @@ function truncate(str, maxlength) {
 }
 */
 
+/* << Напишите функцию для суммирования всех зарплат. Должно получиться 3900. >> */
 
+/*
+let salaries = {
+	John: 1000,
+	Ann: 1600,
+	Pete: 1300,
+	month: 'December',
+	currency: 'USD',
+	isPayed: false
+}
 
-
+function sumSalary(salaries) {
+	let sum = 0; 
+	for(let key in salaries) {
+		if(typeof salaries[key] == 'number' && Infinity(salaries[key]) && -Infinity(salaries[key])) {
+			sum += salaries[key];
+		}
+	}
+	return sum;
+}
+*/
 
 
 
