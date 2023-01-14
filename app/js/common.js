@@ -586,6 +586,33 @@ function sumSalary(salaries) {
 }
 */
 
+/* << Create calculator >> */
+
+let calculator = {
+	sum: function() {
+		return this.a + this.b;
+	},
+	minus: function() {
+		return this.a - this.b;
+	},
+	mul: function() {
+		return this.a * this.b;
+	},
+	division: function() {
+		return this.a / this.b;
+	},
+	readValues: function() {
+		this.a = +prompt('a', 0);
+		this.b = +prompt('b', 0);
+	}
+}
+
+calculator.readValues();
+alert(calculator.sum());
+alert(calculator.minus());
+alert(calculator.mul());
+alert(calculator.division());
+
 
 
 
