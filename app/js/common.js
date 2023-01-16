@@ -627,7 +627,16 @@ function namify(users) {
 }
 */
 
+/* Напишите функцию filterRange(arr, a, b), которая принимает массив чисел arr, ищет в нём элементы между a и b и отдаёт массив этих элементов. Если элемент равен a или b, то его тоже нужно включить в отфильтрованный массив. */
 
+/*
+let arr = [5, 3, 8, 1];
+let filtered = filterRange(arr, 1, 4);
+
+function filterRange(arr, a, b) {
+	return arr.filter((item) => (a <= item && item <= b));
+}
+*/
 
 
 
