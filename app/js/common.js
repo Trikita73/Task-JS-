@@ -588,6 +588,7 @@ function sumSalary(salaries) {
 
 /* << Create calculator >> */
 
+/*
 let calculator = {
 	sum: function() {
 		return this.a + this.b;
@@ -612,8 +613,19 @@ alert(calculator.sum());
 alert(calculator.minus());
 alert(calculator.mul());
 alert(calculator.division());
+*/
 
+/*массив объектов user, и в каждом из них есть user.name. Напишите функцию namify, которая преобразует их в массив имён. */
 
+/*
+let vasya = { name: 'Вася', age: 25 };
+let petya = { name: 'Петя', age: 30 };
+let masha = { name: 'Маша', age: 28 };
+
+function namify(users) {
+	return(users.map((item) => item.name));
+}
+*/
 
 
 
