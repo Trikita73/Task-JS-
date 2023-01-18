@@ -684,7 +684,22 @@ function showSalary(users, age) {
 }
 */
 
+/* Реализуйте функцию, которая принимает строку с числами и возвращает объект, содержащий минимальное и максимальное значения чисел из этой строки. */
 
+/*
+const inputData = '1, -5.8 или 10, хотя 34 + -5.3 и 73';
+
+function getMinMax(str) {
+
+	let SpaceMap = str.split(' ').join(',').split(',');
+
+	let arr = SpaceMap.filter((item) => isFinite(item));
+
+	return { min: Math.min(...arr), max: Math.max(...arr) }
+}
+
+console.log(getMinMax(inputData));
+*/
 
 
 
