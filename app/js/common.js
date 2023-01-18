@@ -356,6 +356,56 @@ for(let i = 2; i <= n; i++) {
 }
 */
 
+/* << this >> */
+
+/*
+// Task: 1 (this)
+let ladder = {
+	step: 0,
+	up() {
+		this.step++;
+		return this;
+	},
+	down() {
+		this.step--;
+		return this;
+	},
+	showStep: function() {
+		alert( this.step );
+		return this;
+	}
+};
+
+ladder
+	.up()
+	.up()
+	.down()
+	.showStep()
+	.down()
+	.showStep();
+*/
+
+// << Task: 2 (calculator)
+
+/*
+let calculator = {
+	firstNumber: 0,
+	lastNumber: 0,
+	read () {
+		this.firstNumber = prompt('Enter First Number', '0');
+		this.lastNumber = prompt('Enter Last Number', '0');
+	},
+	sum() {
+		return (+this.firstNumber) + (+this.lastNumber);
+	},
+	multipl () {
+		return (this.firstNumber) * (this.lastNumber);
+	}
+}
+calculator.read ();
+alert(calculator.sum());
+alert(calculator.multipl());
+*/
 
 /* << Arrays >> */
 
