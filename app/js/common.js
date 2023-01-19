@@ -1,9 +1,62 @@
-/* <<  >> */
+/* << Numbers >> */
+
+// << Task: 1
 
 /*
 let a = 2;
 
 alert(x = 1 + (a *= 2));
+*/
+
+// << Task: 2 (sum)
+
+/*
+let a = +prompt('Enter a', ''); // используй унарный оператор (+), для определение строки в число.
+let b = +prompt('Enter', ''); // используй унарный оператор (+), для определение строки в число.
+
+alert(a + b);
+*/
+
+// << Task: 3 (Enter only Number)
+
+/*
+function readNumber() {
+	let num;
+
+	do {
+		num = prompt('Enter', '0');
+	} while (!isFinite(num));
+
+	if(num === null || num === ' ') {
+		return null;
+	}
+	return +num;
+}
+
+alert(`Number: ${readNumber()}`);
+*/
+
+// << Task: 3
+
+/*
+let i = 0;
+
+while (i < 11) {
+	i += 0.2; //избегайте проверок на равенство при работе с десятичными дробями.
+	if(i > 9.8 && i < 10.2) alert(i);
+}
+*/
+
+// << Task: 4
+
+/*
+function random(min, max) {
+	return min + Math.random() * (max-min);
+}
+
+alert( random(1, 5));
+alert( random(1, 5));
+alert( random(1, 5));
 */
 
 /* << if...else >> */
