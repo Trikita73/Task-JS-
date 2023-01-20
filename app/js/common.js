@@ -83,6 +83,44 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3));
 */
 
+
+/* << String >> */
+
+// << Task: 1 (Заглавная буква) 
+
+/*
+function ucFirst(str) {
+	if(!str) return str;
+
+	return str[0].toUpperCase() + str.slice(1);
+}
+alert(ucFirst("andrii"));
+*/
+
+// << Task: 2 (Тест на спам)
+
+/*
+function checkSpam(str) {
+	let lowerStr = str.toLowerCase();
+	return lowerStr.includes('xxx') || lowerStr.includes('viagra');
+}
+alert(checkSpam('by Viagra here'));
+alert(checkSpam('free xxxx'));
+alert(checkSpam('white rabbit'));
+*/
+
+// << Task 3 (maxlength)
+
+/*
+function truncate(str, maxlength) {
+	return (str.length > maxlength) ?
+	  str.slice(0, maxlength - 1) + '…' : str;
+  }
+
+alert(truncate("Lorem LoremLoremLoremLoremLorem", 20));
+alert(truncate("Say Hello"));
+*/
+
 /* << if...else >> */
 
 // << Task: 1 (prompt ask me)
