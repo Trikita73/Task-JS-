@@ -121,6 +121,16 @@ alert(truncate("Lorem LoremLoremLoremLoremLorem", 20));
 alert(truncate("Say Hello"));
 */
 
+// << Task 4 
+
+/*
+function extraCurrencyValue(str) {
+	return +str.slice(1);
+}
+
+alert(extraCurrencyValue('$120'));
+*/
+
 /* << if...else >> */
 
 // << Task: 1 (prompt ask me)
