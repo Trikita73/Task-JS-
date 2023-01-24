@@ -532,6 +532,92 @@ alert(calculator.sum());
 alert(calculator.multipl());
 */
 
+/* << Object >> */
+
+// << Task: 1 (object: Напишите код, выполнив задание из каждого пункта отдельной строкой)
+
+/*
+let user = {};
+
+user.name = "Josh";
+user.surname = "Smith";
+user.age = "29";
+
+//user.name ="Pete";
+//delete user.name;
+
+console.log(user.name, user.surname, user.age);
+*/
+
+// << Task: 2 (Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false)
+
+/*
+let shedule = {};
+alert(isEmpty(shedule)); // true
+
+shedule["8:30"] = "get up";
+alert(isEmpty(shedule)); // false
+
+function isEmpty(shedule) {
+	for(let key in shedule) {
+		// если тело цикла начнет выполняться - значит в объекте есть свойства
+		return false;
+	}
+	return true;
+}
+*/
+
+// << Task: 3 (Можно ли изменить объект, объявленный с помощью const?)
+
+/*
+const user = {
+	name: "Josh",
+};
+//Paботает
+user.name = "Pete";
+//Ошибка
+//user = 124;
+
+console.log(user.name);
+*/
+
+// << Task 4 (object: Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390. Если объект salaries пуст, то результат должен быть 0.)
+
+/*
+let salaries = {
+	Josh: 100,
+	Ann: 160,
+	Pete: 130,
+	Andy: 0,
+};
+
+let sum = 0;
+for(let key in salaries) {
+	sum +=salaries[key];
+}
+console.log(sum);
+*/
+
+// << Task 5 (object: Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.)
+
+/*
+let menu = {
+	width: 200,
+	height: 300,
+	title: "New menu",
+	size: 0,
+};
+
+function multiplyNumeric(obj) {
+	for(let key in menu) {
+		if(typeof menu[key] == 'number'){
+			menu[key] *= 2;
+		}
+		alert(menu[key]);
+	}
+}
+*/
+
 /* << Arrays >> */
 
 // << Task: 1 (object)
@@ -631,100 +717,16 @@ function getMaxSubSum(arr) {
 alert(getMaxSubSum([-1, 2, 4, 55]));
 */
 
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-/* << Object >> */
-
-// << Task: 1 (object: Напишите код, выполнив задание из каждого пункта отдельной строкой)
-
-/*
-let user = {};
-
-user.name = "Josh";
-user.surname = "Smith";
-user.age = "29";
-
-//user.name ="Pete";
-//delete user.name;
-
-console.log(user.name, user.surname, user.age);
-*/
-
-// << Task: 2 (Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false)
-
-/*
-let shedule = {};
-alert(isEmpty(shedule)); // true
-
-shedule["8:30"] = "get up";
-alert(isEmpty(shedule)); // false
-
-function isEmpty(shedule) {
-	for(let key in shedule) {
-		// если тело цикла начнет выполняться - значит в объекте есть свойства
-		return false;
-	}
-	return true;
-}
-*/
-
-// << Task: 3 (Можно ли изменить объект, объявленный с помощью const?)
-
-/*
-const user = {
-	name: "Josh",
-};
-//Paботает
-user.name = "Pete";
-//Ошибка
-//user = 124;
-
-console.log(user.name);
-*/
-
-// << Task 4 (object: Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390. Если объект salaries пуст, то результат должен быть 0.)
-
-/*
-let salaries = {
-	Josh: 100,
-	Ann: 160,
-	Pete: 130,
-	Andy: 0,
-};
-
-let sum = 0;
-for(let key in salaries) {
-	sum +=salaries[key];
-}
-console.log(sum);
-*/
-
-// << Task 5 (object: Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.)
-
-/*
-let menu = {
-	width: 200,
-	height: 300,
-	title: "New menu",
-	size: 0,
-};
-
-function multiplyNumeric(obj) {
-	for(let key in menu) {
-		if(typeof menu[key] == 'number'){
-			menu[key] *= 2;
-		}
-		alert(menu[key]);
-	}
-}
-*/
 
 
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* <<<<<[(---)]>>>>> */
+
+
 
 /* << Special Task >> */
 
-/* << Task Factorial >> */
+/* <<<< Task Factorial (for) >>>> */
 
 /*
 let n = prompt('Enter', '');
@@ -735,7 +737,7 @@ let facNum = 1;
 alert(facNum);
 */
 
-/* << Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом >> */
+/* <<<< Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом (String) >>>> */
 
 /*
 let str = prompt('Enter', '');
@@ -748,7 +750,7 @@ function ucFirst(str) {
 */
 
 
-/* << Напишите функцию checkSpam(str), возвращающую true, если str содержит '1xBet' или 'XXX', а иначе false >> */
+/* <<<< Напишите функцию checkSpam(str), возвращающую true, если str содержит '1xBet' или 'XXX', а иначе false (String) >>>> */
 
 /*
 function checkSpam(str) {
@@ -757,7 +759,7 @@ function checkSpam(str) {
 }
 */
 
-/* << Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength. >> */
+/* <<<< Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength. (String) >>>> */
 
 /*
 function truncate(str, maxlength) {
@@ -768,7 +770,18 @@ function truncate(str, maxlength) {
 }
 */
 
-/* << Напишите функцию для суммирования всех зарплат. Должно получиться 3900. >> */
+/* Напишите функцию camelize(str), которая преобразует строки вида 'my-short-string' в 'myShortString'.
+   То есть дефисы удаляются, а все слова после них получают заглавную букву.  (String)*/
+
+/*
+let camelize = prompt('Enter', 'Font-back-string');
+
+function camelize(str) {
+	return str.split('-').map((item, index) => index == 0 ? item : item[0].toUpperCase() + item.slice(1)).join('');
+}
+*/
+
+/* <<<< Напишите функцию для суммирования всех зарплат. Должно получиться 3900. (Object) >>>> */
 
 /*
 let salaries = {
@@ -791,7 +804,7 @@ function sumSalary(salaries) {
 }
 */
 
-/* << Create calculator >> */
+/* <<<< Create calculator (Object) >>>> */
 
 /*
 let calculator = {
@@ -820,7 +833,7 @@ alert(calculator.mul());
 alert(calculator.division());
 */
 
-/*массив объектов user, и в каждом из них есть user.name. Напишите функцию namify, которая преобразует их в массив имён. */
+/*массив объектов user, и в каждом из них есть user.name. Напишите функцию namify, которая преобразует их в массив имён. (Object) */
 
 /*
 let vasya = { name: 'Вася', age: 25 };
@@ -832,7 +845,8 @@ function namify(users) {
 }
 */
 
-/* Напишите функцию filterRange(arr, a, b), которая принимает массив чисел arr, ищет в нём элементы между a и b и отдаёт массив этих элементов. Если элемент равен a или b, то его тоже нужно включить в отфильтрованный массив. */
+/* Напишите функцию filterRange(arr, a, b), которая принимает массив чисел arr, ищет в нём элементы между a и b и отдаёт массив этих элементов. 
+   Если элемент равен a или b, то его тоже нужно включить в отфильтрованный массив. (Array) */
 
 /*
 let arr = [5, 3, 8, 1];
@@ -843,22 +857,13 @@ function filterRange(arr, a, b) {
 }
 */
 
-/* Напишите функцию camelize(str), которая преобразует строки вида 'my-short-string' в 'myShortString'.
-То есть дефисы удаляются, а все слова после них получают заглавную букву. */
-
-/*
-let camelize = prompt('Enter', 'Font-back-string');
-
-function camelize(str) {
-	return str.split('-').map((item, index) => index == 0 ? item : item[0].toUpperCase() + item.slice(1)).join('');
-}
-*/
 
 
 /* Создайте функцию showSalary, которая принимает массив пользователей users и максимальный возраст age и возвращает строку с именами и зарплатами пользователей, у которых возраст меньше или равен параметру age. */
-/* Функция showSalary должна возвращать строку из имён и баланса подходящих пользователей */
+/* Функция showSalary должна возвращать строку из имён и баланса подходящих пользователей (Array) */
 // users - массив пользователей
 // age - максимальный возраст пользователей (любое число)
+
 /*
 let result = showSalary(users, age);
 
@@ -889,7 +894,7 @@ function showSalary(users, age) {
 }
 */
 
-/* Реализуйте функцию, которая принимает строку с числами и возвращает объект, содержащий минимальное и максимальное значения чисел из этой строки. */
+/* Реализуйте функцию, которая принимает строку с числами и возвращает объект, содержащий минимальное и максимальное значения чисел из этой строки. (Array) */
 
 /*
 const inputData = '1, -5.8 или 10, хотя 34 + -5.3 и 73';
