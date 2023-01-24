@@ -635,18 +635,51 @@ alert(getMaxSubSum([-1, 2, 4, 55]));
 
 /* << Object >> */
 
-// << Task: 3 (object: constant)
+// << Task: 1 (object: Напишите код, выполнив задание из каждого пункта отдельной строкой)
 
 /*
+let user = {};
 
-const user = {
-	name : "Josh",
+user.name = "Josh";
+user.surname = "Smith";
+user.age = "29";
+
+//user.name ="Pete";
+//delete user.name;
+
+console.log(user.name, user.surname, user.age);
+*/
+
+// << Task: 2 (Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false)
+
+/*
+let shedule = {};
+alert(isEmpty(shedule)); // true
+
+shedule["8:30"] = "get up";
+alert(isEmpty(shedule)); // false
+
+function isEmpty(shedule) {
+	for(let key in shedule) {
+		// если тело цикла начнет выполняться - значит в объекте есть свойства
+		return false;
+	}
+	return true;
 }
+*/
 
+// << Task: 3 (Можно ли изменить объект, объявленный с помощью const?)
+
+/*
+const user = {
+	name: "Josh",
+};
+//Paботает
 user.name = "Pete";
+//Ошибка
+//user = 124;
 
 console.log(user.name);
-
 */
 
 // << Task 4 (object: sum)
