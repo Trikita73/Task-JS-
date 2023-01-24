@@ -682,46 +682,43 @@ user.name = "Pete";
 console.log(user.name);
 */
 
-// << Task 4 (object: sum)
+// << Task 4 (object: Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390. Если объект salaries пуст, то результат должен быть 0.)
 
 /*
-
 let salaries = {
 	Josh: 100,
 	Ann: 160,
-	Pete: 130
-}
+	Pete: 130,
+	Andy: 0,
+};
 
 let sum = 0;
-	for(let key in salaries) {
-		sum += salaries[key];
-	}
-
-	console.log(sum);
-
+for(let key in salaries) {
+	sum +=salaries[key];
+}
+console.log(sum);
 */
 
-// << Task 5 (object: *)
+// << Task 5 (object: Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.)
 
 /*
-
 let menu = {
 	width: 200,
 	height: 300,
-	title: "My menu"
-}
+	title: "New menu",
+	size: 0,
+};
 
-function multiplyNumeric(menu) {
+function multiplyNumeric(obj) {
 	for(let key in menu) {
-		if(typeof menu[key] == 'number') {
+		if(typeof menu[key] == 'number'){
 			menu[key] *= 2;
 		}
+		alert(menu[key]);
 	}
 }
-
-console.log(menu);
-
 */
+
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
