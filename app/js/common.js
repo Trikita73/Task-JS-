@@ -912,6 +912,38 @@ console.log(getMinMax(inputData));
 */
 
 
+/* << DOM >> */
 
+/*
+<html>
+<body>
+  <div>Пользователи:</div>
+  <ul>
+    <li>Джон</li>
+    <li>Пит</li>
+  </ul>
+</body>
+</html>
 
+a) Получить элемент <div>?
+b) Получить <ul>?
+c) Получить второй <li> (с именем Пит)?
+*/
 
+/* Task_1_a */
+
+//document.body.firstElementChild;
+//or
+//document.body.children[0];
+//или первый узел пробел, выбираем втрой.
+//document.body.childNodes[1];
+
+/* Task_1_b */
+
+//document.body.lastElementChild;
+//or
+//document.body.children[0];
+
+/* Task_1_c */
+
+//document.body.lastElementChild.lastElementChild;
