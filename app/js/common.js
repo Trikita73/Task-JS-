@@ -914,6 +914,8 @@ console.log(getMinMax(inputData));
 
 /* << DOM >> */
 
+/* Task_1 */
+
 /*
 <html>
 <body>
@@ -947,3 +949,19 @@ c) Получить второй <li> (с именем Пит)?
 /* Task_1_c */
 
 //document.body.lastElementChild.lastElementChild;
+
+/* Task_2 */
+
+/*
+Задача Соседи
+Если elem – произвольный узел DOM-элемента…
+
+a) Правда, что elem.lastChild.nextSibling всегда равен null?
+b) Правда, что elem.children[0].previousSibling всегда равен null ?
+*/
+
+/* Task_1_a */
+
+//elem.lastChild.nextSibling // Yes(null)
+
+//elem.children[0].previousSibling // No(null)
