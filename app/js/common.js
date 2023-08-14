@@ -1124,3 +1124,33 @@ table.getElementsByTagName('td')[0];
 /*
 table.rows[0].sells[0];
 */
+// или
+/*
+table.querySelector('td');
+*/
+
+// 4. Форма с name="search"
+// предполагаем, что есть только один элемент с таким name в документе
+/*
+let form = document.getElementByName('search');
+*/
+// или, именно форма:
+/*
+document.querySelector('form[name="search"]');
+*/
+
+// 5. Первый input в этой форме
+/*
+form.getElementByTagName('input')[0]; 
+*/
+//или 
+/*
+form.querySelector('input');
+*/
+
+// 6. Последний input в этой форме
+/*
+let inputs = form.querySelectorAll('input'); // найти все input
+
+inputs[inputs.length-1] // взять последний
+*/
