@@ -1035,9 +1035,92 @@ td.style.backgroundColor = 'red';
 </html>
 */
 
+/*
 let table = document.body.firstElementChild;
 
 for(let i = 0; i < table.rows.lenght; i++) {
 	let row = table.rows[i];
 	row.cells[i].style.backgroungColor = 'red';
 }
+*/
+
+/* Task_4 */
+
+/*
+Как найти?…
+
+Таблицу с id="age-table".
+Все элементы label внутри этой таблицы (их три).
+Первый td в этой таблице (со словом «Age»).
+Форму form с именем name="search".
+Первый input в этой форме.
+Последний input в этой форме.
+*/
+
+/*
+<!DOCTYPE HTML>
+<html>
+<body>
+  <form name="search">
+    <label>Search the site:
+      <input type="text" name="search">
+    </label>
+    <input type="submit" value="Search!">
+  </form>
+
+  <hr>
+
+  <form name="search-person">
+    Search the visitors:
+    <table id="age-table">
+      <tr>
+        <td>Age:</td>
+        <td id="age-list">
+          <label>
+            <input type="radio" name="age" value="young">less than 18</label>
+          <label>
+            <input type="radio" name="age" value="mature">18-50</label>
+          <label>
+            <input type="radio" name="age" value="senior">more than 50</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Additionally:</td>
+        <td>
+          <input type="text" name="info[0]">
+          <input type="text" name="info[1]">
+          <input type="text" name="info[2]">
+        </td>
+      </tr>
+
+    </table>
+
+    <input type="submit" value="Search!">
+  </form>
+</body>
+</html>
+*/
+
+// 1. Таблица с `id="age-table"`.
+/*
+let table = document.getElementById('age-table');
+*/
+
+// 2. Все label в этой таблице.
+/*
+table.getElementsByTagName('label');
+*/
+// или 
+/*
+document.querySelectorAll('#age-table label');
+*/
+
+// 3. Первый td в этой таблице
+/*
+table.getElementsByTagName('td')[0];
+*/
+// или
+/*
+table.rows[0].sells[0];
+*/
