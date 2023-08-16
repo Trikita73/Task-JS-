@@ -1226,7 +1226,7 @@ inputs[inputs.length-1] // взять последний
 </html>
 */
 
-/* Task_6 */
+/* Task_7 */
 
 // Что выведет этот код?
 
@@ -1246,4 +1246,28 @@ inputs[inputs.length-1] // взять последний
 Заменяем содержимое <body> на комментарий. Он будет иметь вид <!--BODY-->, т.к. body.tagName == "BODY". Как мы помним, свойство tagName в HTML всегда находится в верхнем регистре.
 Этот комментарий теперь является первым и единственным потомком body.firstChild.
 Значение свойства data для элемента-комментария – это его содержимое (внутри <!--...-->): "BODY".
+*/
+
+/* Task_8 */
+
+//Написать код для выбора элемента с атрибутом data-widget-name.
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+  <div data-widget-name="menu">Choose the genre</div>
+
+  <script>
+	//получаем элемент
+	let elem = document.querySelector('[data-widget-name]');
+
+	// читаем значение
+	alert(elem.dataset.widgetName);
+	//или так
+    alert(elem.getAttribute('data-widget-name'));
+  </script>
+</body>
+</html>
 */
