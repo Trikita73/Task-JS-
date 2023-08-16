@@ -1271,3 +1271,48 @@ inputs[inputs.length-1] // взять последний
 </body>
 </html>
 */
+
+/* Task_9 */
+
+/*
+Сделайте все внешние ссылки оранжевыми, изменяя их свойство style.
+
+Ссылка является внешней, если:
+
+Её href содержит ://
+Но не начинается с http://internal.com.
+*/
+
+/*
+<!DOCTYPE HTML>
+<html>
+<body>
+
+  <a name="list">The list:</a>
+  <ul>
+    <li><a href="https://google.com">https://google.com</a></li>
+    <li><a href="/tutorial">/tutorial.html</a></li>
+    <li><a href="local/path">local/path</a></li>
+    <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+    <li><a href="https://nodejs.org">https://nodejs.org</a></li>
+    <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+  </ul>
+
+  <script>
+  let links = document.querySelectorAll('a');
+
+for (let link of links) {
+  let href = link.getAttribute('href');
+  if (!href) continue; // нет атрибута
+
+  if (!href.includes('://')) continue; // нет протокола
+
+  if (href.startsWith('http://internal.com')) continue; // внутренняя
+
+  link.style.color = 'orange';
+}
+  </script>
+
+</body>
+</html>
+*/
