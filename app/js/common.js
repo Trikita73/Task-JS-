@@ -1316,3 +1316,81 @@ for (let link of links) {
 </body>
 </html>
 */
+
+/*
+Другой, более простой путь – добавить проверку в CSS-селектор:
+*/
+
+/*
+// найти все ссылки, атрибут href у которых содержит ://
+// и при этом href не начинается с http://internal.com
+let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+let links = document.querySelectorAll(selector);
+
+links.forEach(link => link.style.color = 'orange');
+*/
+
+
+/* Task_10 */
+
+/* 
+Создать уведомление
+
+Напишите функцию showNotification(options), которая создаёт уведомление: <div class="notification"> с заданным содержимым. Уведомление должно автоматически исчезнуть через 1,5 секунды.
+*/
+
+/*
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <h2>Уведомление находится справа</h2>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+    magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+    temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+  </p>
+
+  <script>
+    function showNotification({top = 0, right = 0, className, html}) {
+      
+      let notification = document.createElement('div');
+
+      notification.className = 'notification';
+
+      if(className) {
+        notification.classList.add(className);
+      }
+
+      notification.style.top = top + 'px';
+      notification.style.right = right + 'px';
+
+      notification.innerHTML = html;
+      document.body.append(notification);
+
+      setTimeout(() => notification.remove(), 1500);
+
+    }
+
+    // test it
+    let i = 1;
+    setInterval(() => {
+      // показывает элемент с текстом "Hello" рядом с правой верхней частью окна.
+      showNotification({
+        top: 10, // 10px от верхней границы окна (по умолчанию 0px)
+        right: 10, // 10px от правого края окна (по умолчанию 0px)
+        html: 'Hello ' + i++, // HTML-уведомление
+        className: "welcome" // дополнительный класс для div (необязательно)
+      });
+    }, 2000);
+  </script>
+
+
+</body>
+</html>
+*/
