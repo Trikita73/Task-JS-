@@ -1390,7 +1390,49 @@ links.forEach(link => link.style.color = 'orange');
     }, 2000);
   </script>
 
-
 </body>
 </html>
+
+/* Task_11*/
+
+/* <<<< Необходимо реализовать функцию makeFriendsList, которая преобразует переданный массив друзей в стандартный HTML список (ul, li). >>>> */
+
+/* Массив с друзьями имеет следующий формат:
+
+let friends = [
+    {
+        firstName: 'Artsiom',
+        lastName: 'Mezin'
+    },
+    {
+        firstName: 'Ilia',
+        lastName: 'Kantor'
+    },
+    {
+        firstName: 'Christopher',
+        lastName: 'Michael'
+    }
+];
+
+Функция должна вернуть DOM элемент ul, внутри которого будет список друзей:
+
+<ul>
+   <li>Artsiom Mezin</li>
+   <li>Ilia Kantor</li>
+   <li>Christopher Michael</li>
+</ul>
+
+Обращаю ваше внимание, что функция должна вернуть именно DOM элемент, а не строку с вёрсткой. При этом добавлять элементы списка внутрь ul, вы можете используя свойство innerHTML или любой другой способ.
+*/
+
+/* 
+function makeFriendslist(friends) {
+	const ul = document.createElement('ul');
+
+	ul.innerHTML = friends.map(item => `
+			<li>${item.firstName} ${item.lastName}</li>
+		`).join('');
+	
+	return ul;
+}
 */
