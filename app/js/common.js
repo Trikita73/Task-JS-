@@ -1457,7 +1457,6 @@ P.S. для решения рекомендуется использовать �
 */
 
 /*
-
 <!DOCTYPE HTML>
 <html>
 
@@ -1535,3 +1534,129 @@ P.S. для решения рекомендуется использовать �
 </html>
 */
 
+
+/* Task_13*/
+
+/*
+Напишите функцию highlight, которая внесёт изменения в таблицу.
+
+В качестве аргумента функция принимает элемент таблицы (тег table) 
+
+Функция highlight для каждой строки tr таблицы должна сделать следующее:
+
+Проставить класс available/unavailable в зависимости от значения атрибута data-available у ячейки Status. Если её значение true – класс available, если её значение false – класс unavailable.
+Проставить атрибут hidden, если атрибута data-available нет вообще.
+Проставить класс male/female в зависимости от содержимого ячейки Gender. Если её значение m – класс male, Если её значение f – класс female.
+Добавить inline-стиль style="text-decoration: line-through", если значение ячейки Age меньше 18.
+(!!!) Обращаем отдельное внимание, что все манипуляции нужно делать со СТРОКАМИ таблицы (тег tr). Т.е. вы проверяете ячейку (тег td), но изменяете строку (тег tr). Это распространённая ошибка, из-за которой часто не проходит автоматическая проверка.
+
+/**
+ * Метод устанавливает необходимые по условию атрибуты таблице
+ * @param {Element} table
+ 
+function highlight(table) {
+}
+*/
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Занятие 4: Функция highlight</title>
+  
+</head>
+
+<body>
+  <table class="js-teachers">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Gender</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ilia</td>
+        <td>30</td>
+        <td>m</td>
+        <td data-available="true">Free</td>
+      </tr>
+      <tr>
+        <td>Tim</td>
+        <td>39</td>
+        <td>m</td>
+        <td data-available="false">On duty</td>
+      </tr>
+      <tr>
+        <td>Marina</td>
+        <td>25</td>
+        <td>f</td>
+        <td data-available="true">Ready to teach</td>
+      </tr>
+      <tr>
+        <td>Klivden</td>
+        <td>42</td>
+        <td>m</td>
+        <td>Leeeroy Jenkins!</td>
+      </tr>
+      <tr>
+        <td>Ivan</td>
+        <td>17</td>
+        <td>m</td>
+        <td data-available="true">Ready to teach</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    let table = document.querySelector('.js-teachers');
+	const FIRST_COLUMN = 1;
+	const SECOND_COLUMN = 2;
+	const THIRD_COLUMN = 3;
+
+	function highlight(table) {
+		const actions = {
+			[THIRD_COLUMN]: (root, td) => {
+				if (td.dataset.available === 'true') {
+					root.classList.toggle('available', true);
+				} else if (td.dataset.available === 'false') {
+					root.classList.toggle('unavailable', true);
+				} else if (!td.hasAttribute('data-available')) {
+					root.hidden = true;
+				}
+			},
+			[SECOND_COLUMN]: (root, td) => {
+				if (td.textContent === 'm') {
+					root.classList.toggle('male', true);
+				} else if (td.textContent === 'f') {
+					root.classList.toggle('female', true);
+				}
+			},
+			[FIRST_COLUMN]: (root, td) => {
+				const age = parseInt(td.textContent, 10);
+
+				if (age < 18) {
+					root.style.textDecoration = 'line-through';
+				}
+			},
+		};
+
+		for (const tr of table.rows) {
+			Array.from(tr.cells).forEach((td, index) => {
+			const fn = actions[index];
+
+				if (typeof fn === 'function') {
+					fn(tr, td);
+				}
+			});
+		}
+	}
+    highlight(table);
+  </script>
+</body>
+
+</html>
+*/
