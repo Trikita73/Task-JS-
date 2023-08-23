@@ -1425,17 +1425,49 @@ let friends = [
 Обращаю ваше внимание, что функция должна вернуть именно DOM элемент, а не строку с вёрсткой. При этом добавлять элементы списка внутрь ul, вы можете используя свойство innerHTML или любой другой способ.
 */
 
-/* 
-function makeFriendslist(friends) {
-	const ul = document.createElement('ul');
+// <<<< решение:
 
-	ul.innerHTML = friends.map(item => `
-			<li>${item.firstName} ${item.lastName}</li>
-		`).join('');
-	
-	return ul;
-}
-*/ 
+/*
+<!DOCTYPE HTML>
+	<html>
+	<head>
+	<title>Занятие 4: Список друзей</title>
+	</head>
+	<body>
+	<script>
+		function makeFriendslist(friends) {
+			
+			const ul = document.createElement('ul');
+			ul.innerHTML = friends.map(item => `
+					<li>${item.firstName} ${item.lastName}</li>
+				`).join('');
+
+				return ul;
+		}
+	</script>
+	<script>
+		let friends = [
+		{
+			firstName: 'Artsiom',
+			lastName: 'Mezin'
+		},
+		{
+			firstName: 'Ilia',
+			lastName: 'Kantor'
+		},
+		{
+			firstName: 'Christopher',
+			lastName: 'Michael'
+		}
+		];
+
+								
+		document.body.appendChild(makeFriendslist(friends));
+	</script>
+	</body>
+</html>
+*/
+
 
 /* Task_12*/
 
@@ -1455,6 +1487,8 @@ P.S. для решения рекомендуется использовать �
 
 Чтобы сделать ячейку красной, рекомендуется использовать свойство style, которое есть у всех элементов.
 */
+
+// <<<< решение:
 
 /*
 <!DOCTYPE HTML>
