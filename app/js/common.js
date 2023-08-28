@@ -1695,4 +1695,35 @@ function highlight(table) {
 </html>
 */
 
+/* << EVENT >> */
 
+/* Task_1 */
+
+/*
+Скрыть элемент по нажатию кнопки
+Добавьте JavaScript к кнопке button, чтобы при нажатии элемент <div id="text"> исчезал.
+*/
+
+// <<<< решение:
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="hider" value="Нажать чтоб спрятать текст" />
+	<div id="text">ТЕКСТ</div>
+	<script>
+		document.getElementById('hider').onclick = function() {
+			document.getElementById('text').hidden = true;
+		}
+	</script>
+</body>
+</html>
+*/
+
+/* Task_2 */
