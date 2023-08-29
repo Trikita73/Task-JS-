@@ -2019,12 +2019,157 @@ pane.firstChild.onclick = () => pane.remove();
 	</div>
 	<script>
 		let panes = document.querySelectorAll('.pane');
-
 		for(let pane of panes) {
 			pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
 			// кнопка становится первым потомком плитки (pane)
 			pane.firstChild.onclick = () => pane.remove();
 		}
+	</script>
+</body>
+</html>
+*/
+
+/* Task_7 */
+
+/*
+Карусель
+Создайте «Карусель» –- ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
+В дальнейшем к ней можно будет добавить анимацию, динамическую подгрузку и другие возможности.
+P.S. В этой задаче разработка структуры HTML/CSS составляет 90% решения.
+*/
+
+// <<<< решение:
+
+/*
+Лента изображений в разметке должна быть представлена как список ul/li с картинками <img>.
+Нужно расположить ленту внутри <div> фиксированного размера, так чтобы в один момент была видна только нужная часть списка
+
+Чтобы список сделать горизонтальным, нам нужно применить CSS-свойство display: inline-block для <li>.
+Для тега <img> мы также должны настроить display, поскольку по умолчанию он inline. Во всех элементах типа inline резервируется дополнительное место под «хвосты» символов. И чтобы его убрать, нам нужно прописать display:block.
+Для «прокрутки» будем сдвигать <ul>. Это можно делать по-разному, например, назначением CSS-свойства transform: translateX() (лучше для производительности) или margin-left
+
+У внешнего <div> фиксированная ширина, поэтому «лишние» изображения обрезаются.
+Вся карусель – это самостоятельный «графический компонент» на странице, таким образом нам лучше его «обернуть» в отдельный <div class="carousel"> и уже модифицировать стили внутри него.
+*/
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	body {
+		padding: 10px;
+	}
+	.carousel {
+		position: relative;
+		width: 398px;
+		padding: 10px 40px;
+		border: 1px solid #CCC;
+		border-radius: 15px;
+		background: #eee;
+	}
+	.carousel img {
+		width: 130px;
+		height: 130px;
+		//делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок 
+		display: block;
+	}
+	.arrow {
+		position: absolute;
+		top: 60px;
+		padding: 0;
+		background: #ddd;
+		border-radius: 15px;
+		border: 1px solid gray;
+		font-size: 24px;
+		line-height: 24px;
+		color: #444;
+		display: block;
+	}
+	.arrow:focus {
+		outline: none;
+	}
+	.arrow:hover {
+		background: #ccc;
+		cursor: pointer;
+	}
+	.prev {
+		left: 7px;
+	}
+	.next {
+		right: 7px;
+	}
+	.gallery {
+		width: 390px;
+		overflow: hidden;
+	}
+	.gallery ul {
+		height: 130px;
+		width: 9999px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		transition: margin-left 250ms;
+		font-size: 0;
+	}
+	.gallery li {
+		display: inline-block;
+	}
+</style>
+<body>
+	<div id="carousel" class="carousel">
+		<button class="arrow prev">⇦</button>
+		<div class="gallery">
+			<ul>
+				<li><img src="https://ru.js.cx/carousel/1.png"></li>
+				<li><img src="https://ru.js.cx/carousel/2.png"></li>
+				<li><img src="https://ru.js.cx/carousel/3.png"></li>
+				<li><img src="https://ru.js.cx/carousel/4.png"></li>
+				<li><img src="https://ru.js.cx/carousel/5.png"></li>
+				<li><img src="https://ru.js.cx/carousel/6.png"></li>
+				<li><img src="https://ru.js.cx/carousel/7.png"></li>
+				<li><img src="https://ru.js.cx/carousel/8.png"></li>
+				<li><img src="https://ru.js.cx/carousel/9.png"></li>
+				<li><img src="https://ru.js.cx/carousel/10.png"></li>
+			</ul>
+		</div>
+		<button class="arrow next">⇨</button>
+	</div>
+	<script>
+		// этот код помечает картинки, для удобства разработки 
+		let i = 1;
+		for(let li of carousel.querySelectorAll('li')) {
+			li.style.position = 'relative';
+			li.insertAdjacentHTML('beforeend', `<span style="position:absolute; left:0; top:0">${i}</span>`);
+				i++;
+		}
+		// конфигурация 
+		let width = 130; // ширина картинки
+		let count = 3; //видимое количевство изображений
+
+		let list = carousel.querySelector('ul');
+		let listElems = carousel.querySelectorAll('li');
+
+		let position = 0; //положение ленты прокутки
+
+		carousel.querySelector('.prev').onclick = function() {
+			// сдвиг влево
+			position += width * count;
+			// последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
+			position = Math.min(position, 0)
+			list.style.marginLeft = position + 'px';
+		};
+		carousel.querySelector('.next').onclick = function() {
+			// сдвиг вправо
+			position -=width * count;
+			// последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
+			position = Math.max(position, -width * (listElems.length - count));
+			list.style.marginLeft = position + 'px';
+		};
 	</script>
 </body>
 </html>
