@@ -1937,3 +1937,95 @@ let left = event.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidt
 </body>
 </html>
 */
+
+/* Task_6 */
+
+/*
+Добавить кнопку закрытия
+Есть список сообщений.
+При помощи JavaScript для каждого сообщения добавьте в верхний правый угол кнопку закрытия.
+*/
+
+// <<<< решение:
+
+/*
+Чтобы добавить кнопку закрытия, мы можем использовать либо position:absolute (и сделать плитку (pane) position:relative) либо float:right. Преимущество варианта с float:right в том, что кнопка закрытия никогда не перекроет текст, но вариант position:absolute даёт больше свободы для действий. В общем, выбор за вами.
+Тогда для каждой плитки код может выглядеть следующим образом:
+
+pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
+
+Элемент <button> становится pane.firstChild, таким образом мы можем добавить на него обработчик события:
+
+pane.firstChild.onclick = () => pane.remove();
+*/
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	body {
+		margin: 10px auto;
+		width: 470px;
+	}
+	h3 {
+		margin: 0;
+		padding-bottom: .3em;
+		padding-right: 20px;
+		font-size: 1.1em;
+	}
+	p {
+		margin: 0;
+		padding: 0 0 .5em;
+	}
+	.pane {
+		background: #edf5e1;
+		padding: 10px 20px 10px;
+		border-top: solid 2px #c4df9b;
+		position: relative;
+	}
+	.remove-button {
+		position: absolute;
+		font-size: 110%;
+		top: 0;
+		color: darkred;
+		right: 10px;
+		display: block;
+		width: 24px;
+		height: 24px;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div>
+		<div class="pane">
+			<h3>Лошадь</h3>
+			<p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+		</div>
+		<div class="pane">
+			<h3>Осел</h3>
+			<p>Домашний осёл (лат. Equus asinus asinus), или ишак, — одомашненный подвид дикого осла (Equus asinus), сыгравший важную историческую роль в развитии хозяйства и культуры человека и по-прежнему широко в хозяйстве многих развивающихся стран.</p>
+		</div>
+		<div class="pane">
+			<h3>Кошка</h3>
+			<p>Кошка, или домашняя кошка (лат. Felis silvestris catus), — домашнее животное, одно из наиболее популярных(наряду с собакой) «животных-компаньонов». Являясь одиночным охотником на грызунов и других мелких животных, кошка — социальное животное, использующее для общения широкий диапазон звуковых сигналов.</p>
+		</div>
+	</div>
+	<script>
+		let panes = document.querySelectorAll('.pane');
+
+		for(let pane of panes) {
+			pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
+			// кнопка становится первым потомком плитки (pane)
+			pane.firstChild.onclick = () => pane.remove();
+		}
+	</script>
+</body>
+</html>
+*/
