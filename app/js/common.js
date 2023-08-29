@@ -1739,3 +1739,34 @@ function highlight(table) {
 /*
 <input type="button" onclick="this.hidden=true" value="Нажми чтобы спрятать кнопку">
 */
+
+/* Task_3 */
+
+/*
+Какой обработчик запустится?
+В переменной button находится кнопка. Изначально на ней нет обработчиков.
+Который из обработчиков запустится? Что будет выведено при клике после выполнения кода?
+
+button.addEventListener("click", () => alert("1"));
+button.removeEventListener("click", () => alert("1"));
+button.onclick = () => alert(2);
+*/
+
+// <<<< решение:
+
+/*
+Ответ: 1 и 2.
+Первый обработчик сработает, потому что он не был удалён методом removeEventListener. Чтобы удалить обработчик, необходимо передать именно ту функцию, которая была назначена в качестве обработчика. Несмотря на то, что код идентичен, в removeEventListener передаётся новая, другая функция.
+Для того чтобы удалить функцию-обработчик, нужно где-то сохранить ссылку на неё, например:
+
+function handler() {
+  alert(1);
+}
+
+button.addEventListener("click", handler);
+button.removeEventListener("click", handler);
+
+Обработчик button.onclick сработает независимо от addEventListener.
+*/
+
+/* Task_4 */
