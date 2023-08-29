@@ -1770,3 +1770,109 @@ button.removeEventListener("click", handler);
 */
 
 /* Task_4 */
+
+/*
+Передвиньте мяч по полю.
+Пусть мяч перемещается при клике на поле, туда, куда был клик.
+
+Требования:
+
+Центр мяча должен совпадать с местом нажатия мыши (если это возможно без пересечения краёв поля);
+CSS-анимация желательна, но не обязательна;
+Мяч ни в коем случае не должен пересекать границы поля;
+При прокрутке страницы ничего не должно ломаться;
+
+Заметки:
+
+Код должен уметь работать с различными размерами мяча и поля, не привязываться к каким-либо фиксированным значениям.
+Используйте свойства event.clientX/event.clientY для определения координат мыши при клике.
+
+
+// <<<< решение:
+
+/*
+Сначала мы должны выбрать метод позиционирования мяча.
+Мы не можем использовать position:fixed, поскольку прокрутка страницы будет перемещать мяч с поля.
+Правильнее использовать position:absolute, и, чтобы сделать позиционирование действительно надёжным, сделаем само поле (field) позиционированным.
+Далее мы должны назначить корректные значения ball.style.left/top. Сейчас они содержат координаты относительно поля.
+У нас есть значения event.clientX/clientY – координаты нажатия мышки относительно окна браузера;
+Чтобы получить значение left для мяча после нажатия мышки относительно поля, мы должны из координаты нажатия мышки вычесть координату левого края поля и ширину границы:
+
+let left = event.clientX - fieldCoords.left - field.clientLeft;
+
+Значение ball.style.left означает «левый край элемента» (мяча). И если мы назначим такой left для мяча, тогда его левая граница, а не центр, будет под курсором мыши.
+Нам нужно сдвинуть мяч на половину его высоты вверх и половину его ширины влево, чтобы центр мяча точно совпадал с точкой нажатия мышки.
+В итоге значение для left будет таким:
+
+let left = event.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidth/2;
+
+Вертикальная координата будет вычисляться по той же логике.
+Следует помнить, что ширина и высота мяча должна быть известна в тот момент, когда мы получаем значение ball.offsetWidth. Это значение может задаваться в HTML или CSS.
+*/
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	#field {
+		width: 200px;
+		height: 150px;
+		border: 10px solid black;
+		background-color: #00FF00;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	#ball {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 40px;
+		height: 40px;
+		transition: all 1s;
+	}
+</style>
+<body style="height: 2000px;">
+	<p>Нажмите на поле для перемещение мяча.</p>
+	<div id="field">
+		<img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+		. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	</div>
+	<script>
+		field.onclick = function(event) {
+			// координаты поля относительно окна браузера
+			let fieldCoords = this.getBoundingClientRect();
+			// мяч имеет абсолютное позиционирование (position:absolute), поле - относительное (position:relative).
+			// таким образом, координаты мяча рассчитываются относительно внутренего, верхнего левого угла
+			let ballCoords = {
+				top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+				left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2,
+			};
+			// запрещаем пересекать верхнюю границу поля
+			if (ballCoords.top < 0) {
+				ballCoords.top = 0;
+			}
+			// запрещаем пересекать левую границу поля
+			if (ballCoords.left < 0) {
+				ballCoords.left = 0;
+			}
+			// запрещаем пересекать правую границу поля
+			if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+				ballCoords.left = field.clientWidth - ball.clientWidth;
+			}
+			// запрещаем пересекать нижнюю границу поля
+			if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+				ballCoords.top = field.clientHeight - ball.clientHeight;
+			}
+			ball.style.left = ballCoords.left + 'px';
+			ball.style.top = ballCoords.top + 'px';
+		}
+	</script>
+</body>
+</html>
+*/
