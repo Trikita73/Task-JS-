@@ -2174,3 +2174,181 @@ P.S. В этой задаче разработка структуры HTML/CSS �
 </body>
 </html>
 */
+
+/* Task_8 */
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>title-color</title>
+</head>
+<style>
+	#bagua-table th {
+	text-align: center;
+	font-weight: bold;
+	}
+
+	#bagua-table td {
+	width: 150px;
+	white-space: nowrap;
+	text-align: center;
+	vertical-align: bottom;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	}
+
+	#bagua-table .nw {
+	background: #999;
+	}
+
+	#bagua-table .n {
+	background: #03f;
+	color: #fff;
+	}
+
+	#bagua-table .ne {
+	background: #ff6;
+	}
+
+	#bagua-table .w {
+	background: #ff0;
+	}
+
+	#bagua-table .c {
+	background: #60c;
+	color: #fff;
+	}
+
+	#bagua-table .e {
+	background: #09f;
+	color: #fff;
+	}
+
+	#bagua-table .sw {
+	background: #963;
+	color: #fff;
+	}
+
+	#bagua-table .s {
+	background: #f60;
+	color: #fff;
+	}
+
+	#bagua-table .se {
+	background: #0c3;
+	color: #fff;
+	}
+
+	#bagua-table .highlight {
+	background: red;
+	}
+</style>
+<body>
+	
+</body>
+</html>
+
+<body>
+  <link type="text/css" rel="stylesheet" href="bagua.css">
+
+
+  <table id="bagua-table">
+    <tr>
+      <th colspan="3">Квадрат<em>Bagua</em>: Направление, Элемент, Цвет, Значение</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Северо-Запад</strong>
+        <br>Металл
+        <br>Серебро
+        <br>Старейшины
+      </td>
+      <td class="n"><strong>Север</strong>
+        <br>Вода
+        <br>Синий
+        <br>Перемены
+      </td>
+      <td class="ne"><strong>Северо-Восток</strong>
+        <br>Земля
+        <br>Жёлтый
+        <br>Направление
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>Запад</strong>
+        <br>Металл
+        <br>Золото
+        <br>Молодость
+      </td>
+      <td class="c"><strong>Центр</strong>
+        <br>Всё
+        <br>Пурпурный
+        <br>Гармония
+      </td>
+      <td class="e"><strong>Восток</strong>
+        <br>Дерево
+        <br>Синий
+        <br>Будущее
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Юго-Запад</strong>
+        <br>Земля
+        <br>Коричневый
+        <br>Спокойствие
+      </td>
+      <td class="s"><strong>Юг</strong>
+        <br>Огонь
+        <br>Оранжевый
+        <br>Слава
+      </td>
+      <td class="se"><strong>Юго-Восток</strong>
+        <br>Дерево
+        <br>Зелёный
+        <br>Роман
+      </td>
+    </tr>
+
+  </table>
+
+  <script>
+    let table = document.getElementById('bagua-table');
+
+    let selectedTd;
+
+    // table.onclick = function(event) {
+    //   let target = event.target;
+
+    //   while (target != this) {
+    //     if (target.tagName == 'TD') {
+    //       highlight(target);
+    //       return;
+    //     }
+    //     target = target.parentNode;
+    //   }
+    // }
+
+	table.onclick = function(event) {
+		let td = event.target.closest('td'); // Метод elem.closest(selector) возвращает ближайшего предка, соответствующего селектору. В данном случае нам нужен <td>, находящийся выше по дереву от исходного элемента.
+
+		if (!td) return; // Если event.target не содержится внутри элемента <td>, то вызов вернёт null, и ничего не произойдёт.
+
+		if (!table.contains(td)) return; // Если таблицы вложенные, event.target может содержать элемент <td>, находящийся вне текущей таблицы. В таких случаях мы должны проверить, действительно ли это <td> нашей таблицы.
+
+		highlight(td); // И если это так, то подсвечиваем его.
+	};
+
+    function highlight(node) {
+      if (selectedTd) {
+        selectedTd.classList.remove('highlight');
+      }
+      selectedTd = node;
+      selectedTd.classList.add('highlight');
+    }
+  </script>
+
+</body>
+</html>
+*/
