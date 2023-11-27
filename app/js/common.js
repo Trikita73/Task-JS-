@@ -2783,3 +2783,38 @@ P.S. В один момент может быть показана только 
 */
 
 /* TASK_13 */
+
+/* Браузер не должен переходить по указанной ссылке */
+/* <a href="https://w3.org" onclick="handler()">браузер откроет w3.org</a> */
+/*Когда браузер считывает атрибут on*, например onclick, он создаёт функцию-обработчик с содержимым этого атрибута в качестве тела функции. */
+
+// <<<< решение 1:
+
+/*
+<a href="https://w3.org" onclick="return handler()">w3.org</a>
+
+<script>
+	function handler() {
+		alert("...");
+		return false;
+	}
+</script>
+*/
+
+// <<<< решение 2:
+
+/* мы можем использовать event.preventDefault() */
+
+/*
+<a href="https://w3.org" onclick="handler(event)">w3.org</a>
+
+<script>
+	function handler(event) {
+		alert("...");
+		event.preventDefault();
+	}
+</script>
+*/
+
+
+/* TASK_14 */
