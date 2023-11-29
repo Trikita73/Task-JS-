@@ -3017,5 +3017,23 @@ P.P.S. Предотвратите стандартное для браузера
 */
 
 
+/* TASK_17 */
 
+/* Напишите функцию hideSelf, которая сделает так, чтобы кнопка с классом hide-self-button 
+скрывала себя по нажатию. Чтобы скрыть кнопку, добавьте ей атрибут hidden. */
 
+// <<<< решение:
+
+/*
+<button class="hide-self-button">Нажмите, чтобы спрятать</button>
+
+function hideSelf() {
+	let button = document.querySelector('.hide-self-button');
+  
+	button.onclick = function() {
+	  this.hidden = true;
+	};
+  }
+
+  hideSelf();
+*/
