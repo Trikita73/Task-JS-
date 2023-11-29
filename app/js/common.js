@@ -3037,3 +3037,28 @@ function hideSelf() {
 
   hideSelf();
 */
+
+
+/* TASK_18 */
+
+/* Напишите функцию toggleText, которая сделает так, чтобы при первом 
+нажатии на кнопку с классом toggle-text-button текст <div id="text">Текст</div> исчезал, 
+а при повторном нажатии появлялся. Чтобы скрыть текст, добавьте ему атрибут hidden и наоборот. */
+
+/* <button class="toggle-text-button">Нажмите, чтобы спрятать/показать текст</button>
+	<div id="text">Текст</div>
+
+
+function toggleText() {
+	let toggleButton = document.querySelector('.toggle-text-button');
+	let textElement = document.getElementById('text');
+
+	toggleButton.addEventListener('click', () => {
+		let isTextElementHidden = textElement.hidden;
+		textElement.hidden = !isTextElementHidden;
+	});
+}
+
+toggleText();
+
+*/
