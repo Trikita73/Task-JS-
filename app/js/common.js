@@ -3062,3 +3062,275 @@ function toggleText() {
 toggleText();
 
 */
+
+/* TASK_19 */
+
+/* Карусель для сайта */
+
+/* верстка:
+
+<head>
+	<style>
+		.carousel {
+			height: var(--carousel-height);
+			position: relative;
+			overflow: hidden;
+			padding-bottom: 313px;
+		}
+
+		.carousel__caption {
+			position: absolute;
+			z-index: 2;
+			right: 0;
+			bottom: 0;
+			height: 70px;
+			background-color: var(--color-black-dark);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.carousel__price {
+			position: absolute;
+			right: 0;
+			bottom: 100%;
+			display: inline-block;
+			padding: 8px;
+			min-width: 72px;
+			text-align: center;
+			background-color: var(--color-pink);
+			color: var(--color-body);
+			font-family: var(--font-primary), sans-serif;
+			font-weight: 700;
+			font-size: 17px;
+			line-height: 1.2;
+		}
+
+		.carousel__title {
+			text-align: center;
+			font-weight: 500;
+			font-size: 21px;
+			font-style: italic;
+			line-height: 1.2;
+			width: 100%;
+			padding: 0 20px;
+		}
+
+		.carousel__button {
+			background-color: var(--color-yellow);
+			width: 72px;
+			flex: 1 0 72px;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: 0.2s all;
+		}
+
+		.carousel__button:hover,
+		.carousel__button:active {
+			background-color: var(--color-yellow-dark);
+		}
+
+		.carousel__inner {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			left: 0;
+			top: 0;
+			transition: all 1s ease;
+		}
+
+		.carousel__slide {
+			width: 100%;
+			min-width: 100%;
+			height: 100%;
+			position: relative;
+			margin: 0;
+		}
+
+		.carousel__arrow {
+			position: absolute;
+			z-index: 3;
+			bottom: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 70px;
+			height: 70px;
+		}
+
+		.carousel__arrow_right {
+			right: 0;
+		}
+
+		.carousel__arrow_left {
+			left: 0;
+		}
+
+		.carousel__arrow img,
+		.carousel__arrow svg {
+			max-width: 20px;
+		}
+
+		.carousel__img {
+			min-width: 100%;
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		@media all and (max-width: 767px) {
+			.carousel {
+				position: relative;
+				padding-bottom: 57px;
+			}
+
+			.carousel__caption {
+				left: 0;
+				height: 57px;
+			}
+
+			.carousel__arrow {
+				bottom: 57px;
+			}
+
+			.carousel__arrow_right img,
+			.carousel__arrow_right svg {
+				margin-top: 0;
+			}
+
+			.carousel__arrow_left img,
+			.carousel__arrow_left svg {
+				margin-bottom: 0;
+			}
+		}
+	</style>
+</head>
+
+<main>
+	<div class="container" data-carousel-holder>
+		<div class="carousel">
+			<div class="carousel__arrow carousel__arrow_right">
+				<img src="img/carousel/angle-icon.svg" alt="icon">
+			</div>
+			<div class="carousel__arrow carousel__arrow_left">
+				<img src="img/carousel/angle-left-icon.svg" alt="icon">
+			</div>
+
+			<div class="carousel__inner">
+				<div class="carousel__slide" data-id="penang-shrimp">
+				<img src="img/carousel/chicken_loempias.png" class="carousel__img" alt="slide">
+				<div class="carousel__caption">
+					<span class="carousel__price">€16.00</span>
+					<div class="carousel__title">Penang shrimp</div>
+					<button type="button" class="carousel__button">
+					<img src="img/carousel/plus-icon.svg" alt="icon">
+					</button>
+				</div>
+				</div>
+
+				<div class="carousel__slide" data-id="chicken-cashew">
+				<img src="img/carousel/chicken_cashew.png" class="carousel__img" alt="slide">
+				<div class="carousel__caption">
+					<span class="carousel__price">€14.00</span>
+					<div class="carousel__title">Chicken cashew</div>
+					<button type="button" class="carousel__button">
+					<img src="img/carousel/plus-icon.svg" alt="icon">
+					</button>
+				</div>
+				</div>
+
+				<div class="carousel__slide" data-id="red-curry-veggies">
+				<img src="img/carousel/red_curry_vega.png" class="carousel__img" alt="slide">
+				<div class="carousel__caption">
+					<span class="carousel__price">€12.50</span>
+					<div class="carousel__title">Red curry veggies</div>
+					<button type="button" class="carousel__button">
+					<img src="img/carousel/plus-icon.svg" alt="icon">
+					</button>
+				</div>
+				</div>
+
+				<div class="carousel__slide" data-id="chicken-springrolls">
+				<img src="img/carousel/chicken_loempias.png" class="carousel__img" alt="slide">
+				<div class="carousel__caption">
+					<span class="carousel__price">€6.50</span>
+					<div class="carousel__title">Chicken springrolls</div>
+					<button type="button" class="carousel__button">
+					<img src="img/carousel/plus-icon.svg" alt="icon">
+					</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script>
+
+	function initCarousel() {
+		let currentSlideNumber = 0;
+		let slidesAmount = 4;
+		let elem = document.querySelector('[data-carousel-holder]');
+	
+		let carouselInnerElem = elem.querySelector('.carousel__inner');
+		let carouselArrowRight = elem.querySelector('.carousel__arrow_right');
+		let carouselArrowLeft = elem.querySelector('.carousel__arrow_left');
+	
+		update();
+	
+		elem.onclick = ({target}) => {
+		if (target.closest('.carousel__arrow_right')) {
+			next();
+		}
+	
+		if (target.closest('.carousel__arrow_left')) {
+			prev();
+		}
+		};
+	
+		function next() {
+		currentSlideNumber++;
+		update();
+		}
+	
+		function prev() {
+		currentSlideNumber--;
+		update();
+		}
+	
+		function update() {
+		let offset = -carouselInnerElem.offsetWidth * currentSlideNumber;
+		carouselInnerElem.style.transform = `translateX(${offset}px)`;
+	
+		if (currentSlideNumber == slidesAmount - 1) {
+			carouselArrowRight.style.display = 'none';
+		} else {
+			carouselArrowRight.style.display = '';
+		}
+	
+		if (currentSlideNumber == 0) {
+			carouselArrowLeft.style.display = 'none';
+		} else {
+			carouselArrowLeft.style.display = '';
+		}
+		}
+	}
+
+</script>
+
+initCarousel(); // после того, как эта функция выполнится, в карусели должны начать переключаться слайды
+
+*/
