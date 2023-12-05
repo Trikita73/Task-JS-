@@ -3045,6 +3045,8 @@ function hideSelf() {
 нажатии на кнопку с классом toggle-text-button текст <div id="text">Текст</div> исчезал, 
 а при повторном нажатии появлялся. Чтобы скрыть текст, добавьте ему атрибут hidden и наоборот. */
 
+// <<<< решение:
+
 /* <button class="toggle-text-button">Нажмите, чтобы спрятать/показать текст</button>
 	<div id="text">Текст</div>
 
@@ -3066,6 +3068,8 @@ toggleText();
 /* TASK_19 */
 
 /* Карусель для сайта */
+
+// <<<< решение:
 
 /* верстка:
 
@@ -3340,3 +3344,50 @@ initCarousel(); // после того, как эта функция выпол�
 
 /* TASK_1 */
 
+/* Класс Clock написан в функциональном стиле. 
+Перепишите его, используя современный синтаксис классов. */
+/* P.S. Часики тикают в консоли. Откройте её, чтобы посмотреть. */
+
+// <<<< решение:
+
+/*
+
+class Clock {
+	constructor({ template }) {
+		this.template = template;
+	}
+
+	render() {
+		let date = new Date();
+
+		let hours = date.getHours();
+		if (hours < 10) hours = '0' + hours;
+
+		let mins = date.getMinutes();
+		if (mins < 10) mins = '0' + mins;
+
+		let sec = date.getSeconds();
+		if (sec < 10) sec = '0' + sec;
+
+		let output = this.template
+			.replace('h', hours)
+			.replace('m', mins)
+			.replace('s', sec);
+
+		console.log(output);
+	}
+
+	stop() {
+		clearInterval(this.timer);
+	}
+
+	start() {
+		this.render();
+		this.timer = setInterval(() => this.render(), 1000);
+	}
+}
+
+let clock = new Clock({template: 'h:m:s'});
+clock.start();
+
+*/
