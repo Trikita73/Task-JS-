@@ -3391,3 +3391,214 @@ let clock = new Clock({template: 'h:m:s'});
 clock.start();
 
 */
+
+/* TASK_2 */
+
+/*
+В этом задании нужно создать таблицу с возможностью удаления строк.
+Вы получаете данные в виде массива.
+Пример данных:
+
+let rows = [
+    {
+        name: 'Вася',
+        age: 25,
+        salary: 1000,
+        city: 'Самара'
+    },
+    {
+        name: 'Петя',
+        age: 30,
+        salary: 1500,
+        city: 'Москва'
+    }
+];
+
+*/
+
+/*
+Напишите класс UserTable, который создаёт таблицу с этими данными:
+Для каждого элемента массива должна быть отдельная строка в таблице.
+В конце каждой строки должна быть кнопка [X], при клике на которую эта строка удаляется.
+Ссылку на корневой элемент table следует добавить в свойство elem.
+
+Пример использования:
+
+let table = new UserTable(rows);
+document.body.appendChild(table.elem);
+
+*/
+
+/*
+Структура, которая должна быть в HTML:
+
+<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Зарплата</th>
+            <th>Город</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Вася</td>
+            <td>25</td>
+            <td>1000</td>
+            <td>Самара</td>
+            <td><button>X</button></td>
+        </tr>
+        <tr>
+            <td>Петя</td>
+            <td>25</td>
+            <td>1000</td>
+            <td>Самара</td>
+            <td><button>X</button></td>
+        </tr>
+    </tbody>
+</table>
+
+*/
+
+// <<<< решение:
+
+/*
+<body>
+	<h2>Пример минимально необходимой структуры таблицы (только HTML) для прохождения тестов:</h1>
+		
+	<div class="example">
+		<table>
+		<thead>
+			<tr>
+			<th>Имя</th>
+			<th>Возраст</th>
+			<th>Зарплата</th>
+			<th>Город</th>
+			<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td>Ilia</td>
+			<td>25</td>
+			<td>1000</td>
+			<td>Petrozavodsk</td>
+			<td><button>X</button></td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	  
+	<h2>Результат выполнения вашего кода:</h2>
+
+	<script type="module">
+		import UserTable from './js/index.js';
+
+		let rows = [
+			{
+				name: 'Ilia',
+				age: 25,
+				salary: 1000,
+				city: 'Petrozavodsk'
+			},
+			{
+				name: 'Vasya',
+				age: 14,
+				salary: 1500,
+				city: 'Moscow'
+			},
+			{
+				name: 'Ivan',
+				age: 22,
+				salary: 100,
+				city: 'Bryansk',
+			},
+			{
+				name: 'Petya',
+				age: 45,
+				salary: 990,
+				city: 'Chita'
+			},
+		];
+
+		let table = new UserTable(rows);
+		document.body.append(table.elem);
+		
+	</script>
+</body>
+
+*/
+
+/*
+Код для нового файла index.js:
+
+/**
+ * Компонент, который реализует таблицу
+ * с возможностью удаления строк
+ *
+ * Пример одного элемента, описывающего строку таблицы
+ *
+ *      {
+     *          name: 'Ilia',
+     *          age: 25,
+     *          salary: '1000',
+     *          city: 'Petrozavodsk'
+     *      },
+ *
+ */
+
+/*
+export default class UserTable {
+    constructor(rows) {
+        this.elem = document.createElement('table');
+
+        this.elem.innerHTML = `
+            <thead>
+                <tr>
+                <td>Имя</td>
+                <td>Возраст</td>
+                <td>Зарплата</td>
+                <td>Город</td>
+                <td></td>
+                </tr>
+            </thead>
+        `;
+
+        let tbody = this.elem.querySelector('tbody');
+
+        let tableInner = rows.map(row => {
+            let cellsWithData = Object.values(row) // для каждого значения из объекта row
+                .map(value => `<td>${value}</td>`) // обернуть его в <td>
+                .join(''); // полученный массив <td>...</td> объединить в одну строку
+
+            return `
+                <tr>
+                    ${cellsWithData}
+                    <td><button>X</button></td>
+                </tr>
+            `; // возвращаем верстку одной строки
+        }).join('');
+
+        this.elem.innerHTML += `
+            <tbody>
+                ${tableInner}
+            </tbody>
+        `; // оборачиваем полученные строчки в tbody
+
+        this.elem.addEventListener('click', (event) => this.onClick(event));
+    }
+
+    onClick(event) {
+        if (event.target.tagName != 'BUTTON') {
+            return;
+        }
+
+        let tr = event.target.closest('tr');
+
+        tr.remove();
+    }
+    
+}
+*/
