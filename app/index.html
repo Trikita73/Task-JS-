@@ -25,99 +25,6 @@
 
 </head>
 
-<style>
-	.card {
-	height: var(--card-height);
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	transition: 0.2s all;
-	cursor: pointer;
-	}
-
-	.card:hover,
-	.card:hover .card__body {
-	background-color: #3b3a31;
-	}
-
-	.card:hover .card__top {
-	background-color: #4e4d41;
-	}
-
-	.card__top {
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	background-color: var(--color-black-middle);
-	}
-
-	.card__image {
-	max-width: calc(100% - 100px);
-	width: 100%;
-	}
-
-	.card__price {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	display: inline-block;
-	padding: 8px;
-	min-width: 72px;
-	text-align: center;
-	background-color: var(--color-pink);
-	color: var(--color-body);
-	font-family: var(--font-primary), sans-serif;
-	font-weight: 700;
-	font-size: 17px;
-	line-height: 1.2;
-	}
-
-	.card__body {
-	height: 70px;
-	background-color: var(--color-black-dark);
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	}
-
-	.card__title {
-	text-align: center;
-	font-weight: 500;
-	font-size: 21px;
-	font-style: italic;
-	line-height: 1.2;
-	width: 100%;
-	}
-
-	.card__button {
-	background-color: var(--color-yellow);
-	width: 72px;
-	flex: 1 0 72px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	}
-
-	.card__button:hover,
-	.card__button:active {
-	background-color: var(--color-yellow-dark);
-	}
-
-	@media all and (max-width: 767px) {
-	.card {
-		margin-bottom: 16px;
-		height: auto;
-	}
-	}
-</style>
-
 <!-- Main_body -->
 <body class="is_home">
 	<!-- Header -->
@@ -125,24 +32,13 @@
 		<div class="logo">
 			<a href="#">JS</a>
 		</div>
+
 	</header>
 
-	<div id="holder" class="container_half"></div>
-
-	<div id="holder" class="container_half">
-		<div class="card">
-		  <div class="card__top">
-			<img src="/img/products/laab_kai_chicken_salad.png" class="card__image" alt="product">
-			<span class="card__price">€10.00</span>
-		  </div>
-		  <div class="card__body">
-			<div class="card__title">Laab kai chicken salad</div>
-			<button type="button" class="card__button">
-			  <img src="/img/icons/plus-icon.svg" alt="icon">
-			</button>
-		  </div>
-		</div>
-	  </div>
+	<!-- section js -->
+	<section class="js_section">
+		<h2>JavaScript</h2>
+	</section>
 
 	<!-- footer_bottom -->
 	<footer class="bottom_footer">
@@ -151,19 +47,6 @@
 			<p>TriKita73</p>
 		</div>
 	</footer>
-	<script type="module">
-		import ProductCard from './index1.js';
-
-		let card = new ProductCard({
-			name: "Laab kai chicken salad",
-			price: 10,
-			category: "salads",
-			image: "laab_kai_chicken_salad.png",
-			id: "laab-kai-chicken-salad"
-		});
-
-		holder.append(card.elem);
-	</script>
 	<script src="js/common.min.js"></script>
 
 </body>

@@ -1,4 +1,4 @@
-import createElement from '../libs/lib/create-element.js';
+import createElement from '../libs/lib/create-elements.js';
 import escapeHtml from '../libs/lib/escape-html.js';
 
 export default class ProductCard {
@@ -24,7 +24,7 @@ export default class ProductCard {
     }
 
     addEventlisteners() {
-        this.elem.onclick = (event) => this.onclick(event);
+        this.elem.onclick = (event) => this.onClick(event);
     }
 
     onClick(event) {

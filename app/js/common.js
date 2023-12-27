@@ -3662,3 +3662,204 @@ new CustomEvent("product-add", { // имя события должно быть 
 */
 
 // <<<< решение:
+ 
+/*
+INDEX.HTML:
+
+<style>
+	.card {
+	height: var(--card-height);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: 0.2s all;
+	cursor: pointer;
+	}
+
+	.card:hover,
+	.card:hover .card__body {
+	background-color: #3b3a31;
+	}
+
+	.card:hover .card__top {
+	background-color: #4e4d41;
+	}
+
+	.card__top {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	background-color: var(--color-black-middle);
+	}
+
+	.card__image {
+	max-width: calc(100% - 100px);
+	width: 100%;
+	}
+
+	.card__price {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: inline-block;
+	padding: 8px;
+	min-width: 72px;
+	text-align: center;
+	background-color: var(--color-pink);
+	color: var(--color-body);
+	font-family: var(--font-primary), sans-serif;
+	font-weight: 700;
+	font-size: 17px;
+	line-height: 1.2;
+	}
+
+	.card__body {
+	height: 70px;
+	background-color: var(--color-black-dark);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	}
+
+	.card__title {
+	text-align: center;
+	font-weight: 500;
+	font-size: 21px;
+	font-style: italic;
+	line-height: 1.2;
+	width: 100%;
+	}
+
+	.card__button {
+	background-color: var(--color-yellow);
+	width: 72px;
+	flex: 1 0 72px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	}
+
+	.card__button:hover,
+	.card__button:active {
+	background-color: var(--color-yellow-dark);
+	}
+
+	@media all and (max-width: 767px) {
+	.card {
+		margin-bottom: 16px;
+		height: auto;
+	}
+	}
+</style>
+
+<div id="holder" class="container_half">
+	<div class="card">
+		<div class="card__top">
+		<img src="/img/products/laab_kai_chicken_salad.png" class="card__image" alt="product">
+		<span class="card__price">€10.00</span>
+		</div>
+		<div class="card__body">
+		<div class="card__title">Laab kai chicken salad</div>
+		<button type="button" class="card__button">
+			<img src="/img/icons/plus-icon.svg" alt="icon">
+		</button>
+		</div>
+	</div>
+</div>
+
+<script type="module">
+	import ProductCard from './js/index1.js';
+
+	let card = new ProductCard({
+		name: "Laab kai chicken salad",
+		price: 10,
+		category: "salads",
+		image: "laab_kai_chicken_salad.png",
+		id: "laab-kai-chicken-salad"
+	});
+
+	holder.append(card.elem);
+</script>
+
+*/
+
+/*
+INDEX.JS:
+
+import createElement from '../libs/lib/create-elements.js';
+import escapeHtml from '../libs/lib/escape-html.js';
+
+export default class ProductCard {
+    constructor(product) {
+        this.product = product;
+        this.render();
+        this.addEventlisteners();
+    }
+
+    render() {
+        this.elem = createElement(`<div class="card">
+            <div class="card__top">
+                <img src="/img/products/${this.product.image}" class="card__image" alt="product"/>
+                <span class="card__price">€${this.product.price.toFixed(2)}</span>
+            </div>
+            <div class="card__body">
+                <div class="card__title">${escapeHtml(this.product.name)}</div>
+                <button type="button" class="card__button">
+                    <img src="/img/icons/plus-icon.svg" alt="icon"/>
+                </button>
+            </div>
+        </div>`);
+    }
+
+    addEventlisteners() {
+        this.elem.onclick = (event) => this.onClick(event);
+    }
+
+    onClick(event) {
+        this.elem.dispatchEvent(new CustomEvent("product-add", {
+            detail: this.product.id,
+            bubbles: true
+        }));
+    }
+}
+
+*/
+
+/*
+CREATE-ELEMENTS.JS:
+
+// doesn't work for td and some other elements that may not be placed into <div>
+export default function(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.firstElementChild;
+}
+*/
+
+/*
+ESCAPE-HTML.JS:
+
+export default string => Array.from(string).map(char => {
+    switch(char) {
+        case '&':
+            return '&amp;';
+        case '"':
+            return '&quot;';
+        case '\'':
+            return '&#39;';
+        case '<':
+            return '&lt;';
+        case '>':
+            return '&gt;';
+        default:
+            return char;
+    }
+}).join('');
+*/
