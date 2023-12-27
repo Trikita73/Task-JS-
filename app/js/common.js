@@ -3863,3 +3863,73 @@ export default string => Array.from(string).map(char => {
     }
 }).join('');
 */
+
+
+/* TASK_3 */
+
+/*
+Создайте класс Carousel, описывающий компонент «Карусель».
+Главным отличием этой задачи будет использование компонентного подхода.
+
+В качестве аргумента в конструктор класса передаётся массив слайдов для отображения:
+
+let slides = [
+  {
+    name: 'Penang shrimp', // Название товара со слайда
+    price: 16, // Цена товара со слайда
+    image: 'penang_shrimp.png', // Название файла картинки со слайда
+    id: 'penang-shrimp' // Уникальный идентификатор товара со слайда
+  },
+  {
+    name: 'Chicken cashew',
+    price: 14,
+    image: 'chicken_cashew.png',
+    id: 'chicken-cashew'
+  },
+];
+
+let carousel = new Carousel(slides);
+
+
+После этого в carousel.elem должен быть доступен корневой DOM-элемент карусели.
+
+Отрисовка вёрстки компонента:
+
+<div class="carousel__slide" data-id="penang-shrimp">
+  <img src="/assets/images/carousel/...значение slide.image..." class="carousel__img" alt="slide">
+  <div class="carousel__caption">
+    <span class="carousel__price">€<!--значение slide.price--></span>
+    <div class="carousel__title"><!--значение slide.name--></div>
+    <button type="button" class="carousel__button">
+      <img src="/assets/images/icons/plus-icon.svg" alt="icon">
+    </button>
+  </div>
+</div>
+
+Записать ссылку на корневой HTML элемент в свойство elem. 
+Вёрстка всей карусели имеет корневой элемент: div с классом carousel. 
+Так вот, ссылку на этот элемент нужно записать в свойство elem, вот так:
+
+let carousel = new Carousel(slides);
+console.log(carousel.elem); // Корневой HTML элемента карусели
+
+Переключение слайдов по стрелкам
+Требования к переключениям слайдов точно такие же, 
+как в предыдущей задаче про карусель. Отличие в том, 
+что здесь количество слайдов не фиксированное, а может быть любым. 
+
+Событие при клике на «+»:
+
+Кроме показа карусели и переключения слайдов, нужно генерировать событие при клике по кнопке добавления "+".
+В нашем проекте товары можно будет добавлять не только из «Карточки товара», но и из «Карусели».
+А именно, при клике пользователя по кнопке с классом carousel__button генерировать 
+пользовательское событие на корневом HTML элементе компонента (который хранится в свойстве elem), такого вида:
+
+new CustomEvent("product-add", { // имя события должно быть именно "product-add"
+    detail: slide.id, // Уникальный идентификатора товара из объекта слайда
+    bubbles: true // это событие всплывает - это понадобится в дальнейшем
+}
+
+*/
+
+// <<<< решение:
