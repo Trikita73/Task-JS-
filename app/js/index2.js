@@ -26,7 +26,7 @@ export default class Carousel {
         let slides = this.slides.map(item => createElement(`
             <div class="carousel__slide" data-id="${item.id}">
                 <img src="/img/carousel/${item.image}" class="carousel__img" alt="slide" />
-                <div class="carousel__caption"></div>
+                <div class="carousel__caption">
                     <span class="carousel__price">€${item.price.toFixed(2)}</span>
                     <div class="carousel__title">${item.name}</div>
                     <button type="button" class="carousel__button">
@@ -93,5 +93,4 @@ export default class Carousel {
             this.sub('arrow_left').style.display = '';
         }
     }
-
 }

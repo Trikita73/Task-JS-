@@ -74,7 +74,7 @@
 	background-color: var(--color-yellow);
 	width: 72px;
 	flex: 1 0 72px;
-	/*height: 100%;*/
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -136,7 +136,7 @@
 	}
 
 	.carousel__img {
-	height: 100vh;
+		height: 100vh;
 	min-width: 100%;
 	display: block;
 	position: absolute;
@@ -181,74 +181,9 @@
 </style>
 
 <!-- Main_body -->
-<body >
+<body>
 	
-
-	<div class="container">
-		<!--Корневой элемент карусели-->
-		<div class="carousel">
-			<!--Кнопки переключения-->
-			<div class="carousel__arrow carousel__arrow_right">
-				<img src="/img/icons/angle-icon.svg" alt="icon">
-			</div>
-			<div class="carousel__arrow carousel__arrow_left">
-				<img src="/img/icons/angle-left-icon.svg" alt="icon">
-			</div>
-		
-			<div class="carousel__inner">
-				<!--Верстка 1-ого слайда-->
-				<div class="carousel__slide" data-id="penang-shrimp">
-				<img src="/img/carousel/penang_shrimp.png" class="carousel__img" alt="slide">
-				<div class="carousel__caption">
-					<span class="carousel__price">€16.00</span>
-					<div class="carousel__title">Penang shrimp</div>
-					<button type="button" class="carousel__button">
-					<img src="/img/icons/plus-icon.svg" alt="icon">
-					</button>
-				</div>
-				</div>
-		
-				<!--Верстка 2-ого слайда-->
-				<div class="carousel__slide" data-id="chicken-cashew">
-				<img src="/img/carousel/chicken_cashew.png" class="carousel__img" alt="slide">
-				<div class="carousel__caption">
-					<span class="carousel__price">€14.00</span>
-					<div class="carousel__title">Chicken cashew</div>
-					<button type="button" class="carousel__button">
-					<img src="/img/icons/plus-icon.svg" alt="icon">
-					</button>
-				</div>
-				</div>
-		
-				<!--Верстка 3-ого слайда-->
-				<div class="carousel__slide" data-id="red-curry-veggies">
-				<img src="/img/carousel/red_curry_vega.png" class="carousel__img" alt="slide">
-				<div class="carousel__caption">
-					<span class="carousel__price">€12.50</span>
-					<div class="carousel__title">Red curry veggies</div>
-					<button type="button" class="carousel__button">
-					<img src="/img/icons/plus-icon.svg" alt="icon">
-					</button>
-				</div>
-				</div>
-		
-				<!--Верстка 4-ого слайда-->
-				<div class="carousel__slide" data-id="chicken-springrolls">
-				<img src="/img/carousel/chicken_loempias.png" class="carousel__img" alt="slide">
-				<div class="carousel__caption">
-					<span class="carousel__price">€6.50</span>
-					<div class="carousel__title">Chicken springrolls</div>
-					<button type="button" class="carousel__button">
-					<img src="/img/icons/plus-icon.svg" alt="icon">
-					</button>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
+	<div class="container"></div>
 
 	<script type="module">
 		import slides from './js/slides.js';
