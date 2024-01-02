@@ -3622,18 +3622,19 @@ let productCard = new ProductCard(product);
 После этого в productCard.elem должен быть доступен DOM-элемент с карточкой товара.
 
 Вот его вид (HTML):
-
-<div class="card">
-    <div class="card__top">
-        <img src="/assets/images/products/...значение product.image..." class="card__image" alt="product">
-        <span class="card__price">€<!--значение product.price--></span>
-    </div>
-    <div class="card__body">
-        <div class="card__title"><!--значение product.name--></div>
-        <button type="button" class="card__button">
-            <img src="/assets/images/icons/plus-icon.svg" alt="icon">
-        </button>
-    </div>
+<div id="holder" class="container_half">
+	<div class="card">
+		<div class="card__top">
+			<img src="/assets/images/products/...значение product.image..." class="card__image" alt="product">
+			<span class="card__price">€<!--значение product.price--></span>
+		</div>
+		<div class="card__body">
+			<div class="card__title"><!--значение product.name--></div>
+			<button type="button" class="card__button">
+				<img src="/assets/images/icons/plus-icon.svg" alt="icon">
+			</button>
+		</div>
+	</div>
 </div>
 
 Цена представлена в объекте товара, как число (например, вот так: 10), 
@@ -3665,6 +3666,8 @@ new CustomEvent("product-add", { // имя события должно быть 
  
 /*
 INDEX.HTML:
+
+<link rel="stylesheet" href="css/styles/common.css">
 
 <style>
 	.card {
@@ -3759,20 +3762,7 @@ INDEX.HTML:
 	}
 </style>
 
-<div id="holder" class="container_half">
-	<div class="card">
-		<div class="card__top">
-		<img src="/img/products/laab_kai_chicken_salad.png" class="card__image" alt="product">
-		<span class="card__price">€10.00</span>
-		</div>
-		<div class="card__body">
-		<div class="card__title">Laab kai chicken salad</div>
-		<button type="button" class="card__button">
-			<img src="/img/icons/plus-icon.svg" alt="icon">
-		</button>
-		</div>
-	</div>
-</div>
+<div id="holder" class="container_half"></div>
 
 <script type="module">
 	import ProductCard from './js/index1.js';
