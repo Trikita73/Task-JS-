@@ -4327,6 +4327,36 @@ P.S. Код должен работать, если у элемента друг
 
 
   <script>
+
+	// Первое решение :
+
+	let fieldCoords = field.getBoundingClientRect();
+
+	let answer = [
+		[ //1
+			fieldCoords.left,
+			fieldCoords.top
+		],
+		[ //2
+			fieldCoords.right,
+			fieldCoords.bottom
+		],
+		[ //3
+			fieldCoords.left + field.clientLeft,
+			fieldCoords.top + field.clientTop
+		],
+		[ //4
+			fieldCoords.left + field.clientLeft + field.clientWidth,
+			fieldCoords.top + field.clientTop + field.clientHeight
+		]
+	];
+
+	alert(answer.join(' '));
+
+
+	
+	// Второе решение:
+
 	// Верхний левый, внешний угол.
 	let checkpoint1Right = first.getBoundingClientRect().right;
 	let checkpoint1Top = Math.round(first.getBoundingClientRect().top);
@@ -4350,4 +4380,30 @@ P.S. Код должен работать, если у элемента друг
 
 </body>
 </html>
+*/
+
+/* TASK_2 */
+
+/*
+Создайте функцию positionAt(anchor, position, elem), 
+которая позиционирует элемент elem в зависимости от значения 
+свойства position рядом с элементом anchor.
+
+Аргумент position – строка с одним из 3 значений:
+
+"top" – расположить elem прямо над anchor
+"right" – расположить elem непосредственно справа от anchor
+"bottom" – расположить elem прямо под anchor
+
+Она используется внутри функции showNote(anchor, position, html), 
+которая уже есть в исходном коде задачи. 
+Она создаёт и показывает элемент-«заметку» с текстом html 
+на заданной позиции position рядом с элементом anchor.
+
+В этой задаче нам нужно только аккуратно вычислить координаты.
+
+Обратите внимание, что элементы должны уже быть в документе 
+перед чтением offsetHeight и других свойств. 
+Спрятанный (display:none) элемент или элемент 
+вне документа не имеют размеров.
 */
