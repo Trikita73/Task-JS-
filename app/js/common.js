@@ -4494,7 +4494,7 @@ P.S. Код должен работать, если у элемента друг
 			elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
 			break;
 		}
-	  }
+	}
   
 	 
 	// Показывает заметку с заданным содержимым на заданной позиции
@@ -4520,5 +4520,72 @@ P.S. Код должен работать, если у элемента друг
   
   </body>
   </html>
+
+*/
+
+/* TASK_3 */
+
+/*
+Покать заметку около элемента (абсолютное позиционирование)
+
+Измените код решения "TASK_2" так, чтобы элемент заметки использовал 
+свойство position:absolute вместо position:fixed.
+
+Это предотвратит расхождение элементов при прокрутке страницы.
+
+Используйте решение предыдущего задания для начала. 
+Чтобы проверить решение в условиях с прокруткой, 
+добавьте стиль элементу <body style="height: 2000px">.
+
+Решение достаточно простое:
+Используйте position:absolute в CSS вместо position:fixed для элемента с классом .note.
+Используйте функцию getCoords(), 
+чтобы получить координаты относительно документа.
+*/
+
+// <<<< решение:
+
+/*
+<style>
+	.note {
+		// position: fixed; меняем на absolute
+		position: absolute;
+	}
+</style>
+
+<script>
+
+function getCoords(elem) {
+      let box = elem.getBoundingClientRect();
+
+      return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset
+      };
+}
+    
+function positionAt(anchor, position, elem) {
+
+  let anchorCoords = getCoords(anchor);
+
+  switch (position) {
+    case "top":
+      elem.style.left = anchorCoords.left + "px";
+      elem.style.top = anchorCoords.top - elem.offsetHeight + "px";
+      break;
+
+    case "right":
+      elem.style.left = anchorCoords.left + anchor.offsetWidth + "px";
+      elem.style.top = anchorCoords.top + "px";
+      break;
+
+    case "bottom":
+      elem.style.left = anchorCoords.left + "px";
+      elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
+      break;
+  }
+}
+
+</script>
 
 */
