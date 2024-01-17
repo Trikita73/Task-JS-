@@ -5026,3 +5026,103 @@ P.P.S. Достаточно обрабатывать вертикальную п
 </html>
 
 */
+
+
+/* TASK_8 */
+
+/*
+Слайдер
+
+Создайте слайдер
+
+Захватите мышкой синий бегунок и двигайте его.
+
+Важные детали:
+
+Слайдер должен нормально работать при резком движении мыши влево 
+или вправо за пределы полосы. При этом бегунок должен останавливаться чётко в нужном конце полосы.
+При нажатом бегунке мышь может выходить за пределы полосы слайдера, 
+но слайдер пусть всё равно работает (это удобно для пользователя).
+
+Как можно видеть из HTML/CSS, слайдер – это <div>, подкрашенный фоном/градиентом, 
+внутри которого находится другой <div>, оформленный как бегунок, с position:relative.
+
+Используем для его координат position:relative, т.е. 
+координаты ставятся не абсолютные, а относительно родителя, так как это удобнее.
+
+И дальше реализуем Drag’n’Drop только по горизонтали, с ограничением по ширине.
+*/
+
+// <<<< решение:
+
+/*
+<style>
+	.slider {
+	border-radius: 5px;
+	background: #E0E0E0;
+	background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+	width: 310px;
+	height: 15px;
+	margin: 5px;
+	}
+
+	.thumb {
+	width: 10px;
+	height: 25px;
+	border-radius: 3px;
+	position: relative;
+	left: 10px;
+	top: -5px;
+	background: blue;
+	cursor: pointer;
+	}
+</style>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+    let thumb = slider.querySelector('.thumb');
+
+	thumb.onmousedown = function(event) {
+		event.preventDefault(); // предотвратить запуск выделения (действие браузера)
+
+		let shiftX = event.clientX - thumb.getBoundingClientRect().left;
+		// shiftY здесь не нужен, слайдер двигается только по горизонтали
+
+		document.addEventListener('mousemove', onMouseMove);
+		document.addEventListener('mouseup', onMouseUp);
+
+		function onMouseMove(event) {
+			let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+
+			// курсор вышел из слайдера => оставить бегунок в его границах.
+			if(newLeft < 0) {
+				newLeft = 0;
+			}
+			let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+			if(newLeft > rightEdge) {
+				newLeft = rightEdge;
+			}
+
+			thumb.style.left = newLeft + 'px';
+		}
+
+		function onMouseUp() {
+			document.removeEventListener('mouseup', onMouseUp);
+			document.removeEventListener('mousemove', onMouseMove);
+		}
+
+	};
+
+	thumb.ondragstart = function() {
+		return false;
+	};
+
+  </script>
+  */
+
+  
