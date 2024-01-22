@@ -5350,3 +5350,75 @@ float: left;
 	
 </html>
 */
+
+
+/* TASK_10 */
+
+/*
+Отследить одновременное нажатие:
+
+Создайте функцию runOnKeys(func, code1, code2, ... code_n), 
+которая запускает func при одновременном нажатии клавиш с кодами 
+code1, code2, …, code_n.
+
+Например, код ниже выведет alertпри одновременном 
+нажатии клавиш "Q" и "W" (в любом регистре, в любой раскладке)
+
+runOnKeys(
+  () => alert("Привет!"),
+  "KeyQ",
+  "KeyW"
+);
+
+Необходимо использовать 
+два обработчика событий: document.onkeydown и document.onkeyup.
+
+Создадим множество pressed = new Set(), в которое будем записывать клавиши, 
+нажатые в данный момент.
+
+В первом обработчике будем добавлять в него значения, а во втором удалять. 
+Каждый раз, как отрабатывает keydown, 
+будем проверять – все ли нужные клавиши нажаты, и, если да – выводить сообщение.
+*/
+
+// <<<< решение:
+
+/*
+<body>
+	<p>Нажмите "Q" и "W" вместе (язык значения не играет).</p>
+	<script>
+		function runOnKeys(func, ...codes) {
+			let pressed = new Set();
+
+			document.addEventListener('keydown', function(event) {
+				pressed.add(event.code);
+
+				for (let code of codes) { // все ли клавиши из набора нажаты?
+					if(!pressed.has(code)) {
+						return;
+					}
+				}
+
+				 // да, все
+
+        		// во время показа alert, если посетитель отпустит клавиши - не возникнет keyup
+        		// при этом JavaScript "пропустит" факт отпускания клавиш, а pressed[keyCode] останется true
+        		// чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
+				pressed.clear();
+
+				func();
+			});
+
+			document.addEventListener('keyup', function(event) {
+				pressed.delete(event.code);
+			});
+		}
+
+		runOnKeys(
+			() => alert("Привет!"),
+			"KeyQ",
+			"KeyW"
+		);
+	</script>
+</body>
+*/
