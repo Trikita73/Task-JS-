@@ -5543,3 +5543,352 @@ new CustomEvent('ribbon-select', { // имя события должно быт�
 */
 
 // <<<< решение:
+
+/*
+
+Доп. файлы:
+
+index3.js; 
+path: '../libs/lib/create-elements.js';
+
+categories.js;
+path: './libs/categories/categories.js';
+
+
+INDEX.HTML:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Бангкок Экспресс: Лента-Меню</title>
+</head>
+<style>
+	.ribbon {
+		margin-bottom: 38px;
+		height: 50px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.ribbon__inner {
+		padding-bottom: 15px;
+		margin-bottom: -15px;
+		box-sizing: content-box;
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		scroll-behavior: smooth;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.ribbon__arrow {
+		display: none;
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		bottom: 0;
+		width: 120px;
+		flex-direction: column;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	.ribbon__arrow.ribbon__arrow_left {
+	left: 0;
+	background: linear-gradient(
+		90deg,
+		var(--color-black) 25%,
+		var(--color-black) 61%,
+		rgba(31, 30, 25, 0) 100%
+	);
+		padding-left: 14px;
+	}
+
+	.ribbon__arrow.ribbon__arrow_left img {
+		transform: rotate(180deg);
+	}
+
+	.ribbon__arrow.ribbon__arrow_right {
+	right: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(31, 30, 25, 0) 25%,
+		var(--color-black) 61%,
+		var(--color-black) 100%
+	);
+		text-align: right;
+		align-items: flex-end;
+		padding-right: 14px;
+	}
+
+	.ribbon__arrow.ribbon__arrow_visible {
+		display: flex;
+	}
+
+	.ribbon__arrow img {
+		width: 8px;
+	}
+
+	.ribbon__arrow:hover img {
+		opacity: 0.8;
+	}
+
+	.ribbon__item {
+		color: var(--color-body);
+		background: var(--color-black-dark);
+		padding: 24px 38px;
+		font-size: 21px;
+		font-style: italic;
+		line-height: 0.2;
+		font-weight: 500;
+		text-decoration: none;
+		white-space: nowrap;
+		border: none;
+		border-left: 1px solid var(--color-black);
+		cursor: pointer;
+	}
+
+	.ribbon__item:first-child {
+		border-left: none;
+	}
+
+	.ribbon__item.ribbon__item_active,
+	.ribbon__item:hover {
+		background-color: var(--color-black-light);
+	}
+
+@media all and (max-width: 767px) {
+	.ribbon {
+		margin-bottom: 0;
+	}
+
+	.ribbon__item {
+		font-size: 18px;
+		padding: 13px;
+	}
+
+	.ribbon__arrow {
+		display: none;
+	}
+
+	.ribbon__arrow.ribbon__arrow_visible {
+		display: none;
+	}
+}
+	@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
+@import "./button.css";
+
+:root {
+  --color-white: #fff;
+  --color-black: #1f1e19;
+  --color-yellow: #ecd41a;
+  --color-yellow-dark: #c8b416;
+  --color-pink: #c92086;
+  --color-black-light: #6e6a51;
+  --color-black-middle: #414036;
+  --color-black-dark: #2d2c25;
+  --color-grey: #b6b4a2;
+  --color-body: var(--color-white);
+  --carousel-height: 313px;
+  --card-height: 320px;
+  --font-primary: "Lato";
+  --font-secondary: "Sriracha";
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-primary), cursive;
+  color: var(--color-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-black);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body main {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+p {
+  font-family: var(--font-primary), sans-serif;
+  margin: 0;
+}
+
+h1,
+.heading {
+  font-size: 46px;
+  line-height: 1.2;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading.logo {
+  font-family: var(--font-secondary), sans-serif;
+}
+
+h2,
+.section-heading {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 40px 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.page-title {
+  font-size: 230px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 6px 6px var(--color-pink);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.general-text {
+  font-family: var(--font-secondary), sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--color-body);
+  text-align: center;
+}
+
+.container {
+  max-width: 988px;
+  margin: 0 auto;
+}
+
+.container_half {
+  max-width: 494px;
+}
+
+.header {
+  padding: 50px 0 36px;
+  position: relative;
+}
+
+.subheading {
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-grey);
+  margin: 0;
+}
+
+@media all and (max-width: 767px) {
+  h1,
+  .heading {
+    font-size: 32px;
+  }
+
+  .subheading {
+    font-size: 18px;
+  }
+
+  h2,
+  .section-heading {
+    font-size: 28px;
+    margin: 40px 0 20px;
+  }
+
+  .page-title {
+    font-size: 118px;
+    text-shadow: 4px 4px var(--color-pink);
+  }
+
+  .header {
+    padding: 20px 0 30px;
+    overflow: hidden;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@keyframes loadingSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+<body>
+	<div class="container"></div>
+
+	<script type="module">
+		import RibbonMenu from './js/index3.js';
+		import categories from './libs/categories/categories.js';
+
+		let ribbon = new RibbonMenu(categories);
+
+		let container = document.querySelector('.container');
+
+		container.append(ribbon.elem);
+	</script>
+</body>
+</html>
+
+*/
