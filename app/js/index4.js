@@ -3,7 +3,6 @@ import createElement from '../libs/lib/create-elements.js';
 export default class Modal {
     constructor() {
         this.render();
-
         this.elem.addEventListener('click', (event) => this.onClick(event));
     }
 
@@ -18,7 +17,7 @@ export default class Modal {
                         </button>
                         <h3 class="modal__title"><h3>
                     </div>
-                    <div clas="modal__body"></div>
+                    <div class="modal__body"></div>
                 </div>
             </div>
         `);
@@ -30,7 +29,7 @@ export default class Modal {
 
     open() {
         document.body.append(this.elem);
-        document.body.classList('is-modal-open');
+        document.body.classList.add('is-modal-open');
         
         this._keydownEventListener = (event) => this.onDocumentKeyDown(event);
         document.addEventListener('keydown', this._keydownEventListener);

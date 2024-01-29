@@ -1,335 +1,53 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Бангкок Экспресс: Модальное окно</title>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>JS</title>
+	<meta name="description" content="Test Platfrom for task JavaScript">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202222">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
 
 </head>
-<style>
-.modal {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow-y: auto;
-  display: block;
-}
 
-.is-modal-open {
-  overflow: hidden;
-}
+<!-- Main_body -->
+<body class="is_home">
+	<!-- Header -->
+	<header class="top_line ">
+		<div class="logo">
+			<a href="#">JS</a>
+		</div>
 
-.modal__overlay {
-  height: 100%;
-  width: 100%;
-  background-color: #918f79;
-  opacity: 0.8;
-}
+	</header>
 
-.modal__inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 994px;
-  width: 100%;
-  background-color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-}
+	<!-- section js -->
+	<section class="js_section">
+		<h2>JavaScript</h2>
+	</section>
 
-.modal__header {
-  position: relative;
-  padding: 30px 80px;
-}
+	<!-- footer_bottom -->
+	<footer class="bottom_footer">
+		<div class="container text-center">
+			<div class="footer_copyright">2022 © <span class="logo_footer logo_litera">JS</span></div>
+			<p>TriKita73</p>
+		</div>
+	</footer>
+	<script src="js/common.min.js"></script>
 
-.modal__body {
-  padding: 0 80px 64px;
-}
-
-.modal__body-inner {
-  background-color: var(--color-black-dark);
-  text-align: center;
-  padding: 40px 33px;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 1.2;
-  color: var(--color-body);
-  font-family: var(--font-primary), sans-serif;
-  font-style: italic;
-}
-
-.modal__body-inner img {
-  max-width: 100%;
-  margin-top: 20px;
-}
-
-.modal__buttons {
-  margin-top: 48px;
-  text-align: center;
-}
-
-.modal__title {
-  font-size: 36px;
-  line-height: 1.8;
-  font-family: var(--font-secondary), sans-serif;
-  font-weight: 400;
-  color: var(--color-yellow);
-  text-shadow: 3px 3px var(--color-pink);
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.modal__close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  cursor: pointer;
-}
-
-.modal__close:hover {
-  opacity: 0.8;
-}
-
-@media all and (max-width: 767px) {
-  .modal__body {
-    padding: 0 0 45px;
-    flex-grow: 1;
-  }
-
-  .modal__inner {
-    top: 0;
-    left: 0;
-    transform: none;
-    min-height: 100vh;
-  }
-
-  .modal__title {
-    font-size: 28px;
-    margin: 0;
-  }
-}
-@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
-@import "./button.css";
-
-:root {
-  --color-white: #fff;
-  --color-black: #1f1e19;
-  --color-yellow: #ecd41a;
-  --color-yellow-dark: #c8b416;
-  --color-pink: #c92086;
-  --color-black-light: #6e6a51;
-  --color-black-middle: #414036;
-  --color-black-dark: #2d2c25;
-  --color-grey: #b6b4a2;
-  --color-body: var(--color-white);
-  --carousel-height: 313px;
-  --card-height: 320px;
-  --font-primary: "Lato";
-  --font-secondary: "Sriracha";
-}
-
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  font-family: var(--font-primary), cursive;
-  color: var(--color-body);
-  font-size: 16px;
-  line-height: 1.5;
-  background-color: var(--color-black);
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
-
-a:active,
-a:hover {
-  outline-width: 0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body main {
-  position: relative;
-  z-index: 2;
-  padding-bottom: 100px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-button {
-  box-shadow: none;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-p {
-  font-family: var(--font-primary), sans-serif;
-  margin: 0;
-}
-
-h1,
-.heading {
-  font-size: 46px;
-  line-height: 1.2;
-  color: var(--color-yellow);
-  text-shadow: 3px 3px var(--color-pink);
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.heading.logo {
-  font-family: var(--font-secondary), sans-serif;
-}
-
-h2,
-.section-heading {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: 36px;
-  line-height: 1.2;
-  font-weight: 400;
-  color: var(--color-yellow);
-  text-shadow: 3px 3px var(--color-pink);
-  margin: 40px 0 30px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.page-title {
-  font-size: 230px;
-  line-height: 1;
-  font-weight: 400;
-  color: var(--color-yellow);
-  text-shadow: 6px 6px var(--color-pink);
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 26px;
-}
-
-.general-text {
-  font-family: var(--font-secondary), sans-serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 1.2;
-  color: var(--color-body);
-  text-align: center;
-}
-
-.container {
-  max-width: 988px;
-  margin: 0 auto;
-}
-
-.container_half {
-  max-width: 494px;
-}
-
-.header {
-  padding: 50px 0 36px;
-  position: relative;
-}
-
-.subheading {
-  font-size: 21px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.2;
-  text-align: center;
-  color: var(--color-grey);
-  margin: 0;
-}
-
-@media all and (max-width: 767px) {
-  h1,
-  .heading {
-    font-size: 32px;
-  }
-
-  .subheading {
-    font-size: 18px;
-  }
-
-  h2,
-  .section-heading {
-    font-size: 28px;
-    margin: 40px 0 20px;
-  }
-
-  .page-title {
-    font-size: 118px;
-    text-shadow: 4px 4px var(--color-pink);
-  }
-
-  .header {
-    padding: 20px 0 30px;
-    overflow: hidden;
-  }
-
-}
-
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-}
-
-@keyframes loadingSpinner {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}	
-</style>
-
-<body>
-	<div class="container">
-		<button class='button' onclick="openModal()" style="background: white; color: black; padding: 10px">
-			Нажми меня, чтоб открыть модальное окно!
-		</button>
-	</div>
-	<script type="module">
-		import Modal from './js/index4.js';
-		import createElement from './libs/lib/create-elements.js';
-
-		window.openModal = () => {
-			let modal = new Modal();
-			modal.setTitle('Modal Title');
-			modal.setBody(createElement('<div>Тело модального окна</div>'));
-
-			modal.open();
-		}
-	</script>
 </body>
-
 </html>
