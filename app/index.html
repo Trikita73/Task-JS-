@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Бангкок Экспресс: Модальное окно</title>
 
-  <link rel="stylesheet" href="./index.css" />
-  <link rel="stylesheet" href="/assets/styles/common.css" />
 </head>
 <style>
 .modal {
@@ -321,12 +319,12 @@ h2,
 		</button>
 	</div>
 	<script type="module">
-		import Modal from './index.js';
-		import createElement from '../../assets/lib/create-element.js';
+		import Modal from './js/index4.js';
+		import createElement from './libs/lib/create-elements.js';
 
 		window.openModal = () => {
-			let model = new Modal();
-			model.setTitle('Modal Title');
+			let modal = new Modal();
+			modal.setTitle('Modal Title');
 			modal.setBody(createElement('<div>Тело модального окна</div>'));
 
 			modal.open();
