@@ -6312,7 +6312,7 @@ h2,
 
 */
 
-/* TASK_13 SLIDER_PART_ONE */
+/* TASK_13 SLIDER_MENU_PART_ONE */
 
 /*
 В этой задаче мы создадим слайдер, который меняет свое значение по клику.
@@ -6488,3 +6488,384 @@ let valuePercents = value / segments * 100;
 
 // <<<< решение:
 
+/*
+Доп. файлы:
+
+index5.js; 
+path: './js/index5.js';
+
+create-elements.js в index5.js;
+path: '../libs/lib/create-elements.js';
+
+INDEX.HTML:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бангкок Экспресс: Пошаговый слайдер</title>
+</head>
+<style>
+@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
+
+:root {
+  --color-white: #fff;
+  --color-black: #1f1e19;
+  --color-yellow: #ecd41a;
+  --color-yellow-dark: #c8b416;
+  --color-pink: #c92086;
+  --color-black-light: #6e6a51;
+  --color-black-middle: #414036;
+  --color-black-dark: #2d2c25;
+  --color-grey: #b6b4a2;
+  --color-body: var(--color-white);
+  --carousel-height: 313px;
+  --card-height: 320px;
+  --font-primary: "Lato";
+  --font-secondary: "Sriracha";
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-primary), cursive;
+  color: var(--color-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-black);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body main {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+p {
+  font-family: var(--font-primary), sans-serif;
+  margin: 0;
+}
+
+h1,
+.heading {
+  font-size: 46px;
+  line-height: 1.2;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading.logo {
+  font-family: var(--font-secondary), sans-serif;
+}
+
+h2,
+.section-heading {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 40px 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.page-title {
+  font-size: 230px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 6px 6px var(--color-pink);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.general-text {
+  font-family: var(--font-secondary), sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--color-body);
+  text-align: center;
+}
+
+.container {
+  max-width: 988px;
+  margin: 0 auto;
+}
+
+.container_half {
+  max-width: 494px;
+}
+
+.header {
+  padding: 50px 0 36px;
+  position: relative;
+}
+
+.subheading {
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-grey);
+  margin: 0;
+}
+
+@media all and (max-width: 767px) {
+  h1,
+  .heading {
+    font-size: 32px;
+  }
+
+  .subheading {
+    font-size: 18px;
+  }
+
+  h2,
+  .section-heading {
+    font-size: 28px;
+    margin: 40px 0 20px;
+  }
+
+  .page-title {
+    font-size: 118px;
+    text-shadow: 4px 4px var(--color-pink);
+  }
+
+  .header {
+    padding: 20px 0 30px;
+    overflow: hidden;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@keyframes loadingSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+  .slider {
+  position: relative;
+  background-color: var(--color-black-dark);
+  margin: 0 16px;
+  width: 330px;
+  height: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.slider__progress {
+  height: 8px;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, #f3e273 0%, #dd6428 52%, #d31c34 100%);
+  transform: translate(0, -50%);
+}
+
+.slider_dragging .slider__thumb {
+  cursor: grabbing;
+}
+
+.slider__thumb {
+  background-color: var(--color-white);
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 0;
+  margin-left: -10px;
+  transform: translate(0, -50%);
+  cursor: grab;
+}
+
+.slider__value {
+  color: var(--color-body);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+  cursor: default;
+}
+
+.slider__steps {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+}
+
+.slider__steps > span {
+  background-color: var(--color-black-dark);
+  display: inline-flex;
+  width: 2px;
+  height: 9px;
+  margin-left: -1px;
+  transition: 0.2s height;
+}
+
+.slider__steps > span:first-child,
+.slider__steps > span:last-child {
+  margin-left: 0;
+}
+
+.slider__steps > .slider__step-active {
+  background-color: var(--color-black-light);
+  height: 14px;
+}
+.button {
+  height: 64px;
+  padding: 19px 24px;
+  background-color: var(--color-yellow);
+  font-family: "Lato", sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--color-black);
+  display: inline-block;
+  transition: 0.2s all;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+  background-color: var(--color-yellow-dark);
+}
+
+.button.button_block {
+  display: block;
+  width: 100%;
+}
+
+.button.is-loading {
+  pointer-events: none;
+}
+
+.button.is-loading:after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  position: relative;
+  background: url(/assets/images/icons/loader-icon-sm.svg) center no-repeat;
+  background-size: cover;
+  vertical-align: bottom;
+  display: inline-block;
+  animation: loadingSpinner 1s infinite linear;
+}
+
+.btn-group {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn-group__button {
+  position: relative;
+}
+
+@media all and (max-width: 767px) {
+  .btn-group {
+    display: flex;
+  }
+
+  .btn-group__button {
+    flex-grow: 1;
+  }
+}
+</style>
+<body>
+  <div class="container" id="holder" style="padding: 50px"></div>
+
+  <script type="module">
+    import StepSlider from './js/index5.js';
+
+    let stepSlider = new StepSlider({
+      steps: 5
+    });
+
+    holder.append(stepSlider.elem);
+
+    holder.addEventListener('slider-change', (event) => console.log(event));
+  </script>
+</body>
+</html>
+
+*/
+
+/* TASK_14 SLIDER_MENU_PART_TWO */
