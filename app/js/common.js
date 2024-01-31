@@ -6504,205 +6504,12 @@ INDEX.HTML:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Бангкок Экспресс: Пошаговый слайдер</title>
+  <title>Бангкок Экспресс: Пошаговый слайдер часть 1</title>
+
+  <link rel="stylesheet" href="/css/styles/slider_menu.css" />
 </head>
 <style>
-@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
-
-:root {
-  --color-white: #fff;
-  --color-black: #1f1e19;
-  --color-yellow: #ecd41a;
-  --color-yellow-dark: #c8b416;
-  --color-pink: #c92086;
-  --color-black-light: #6e6a51;
-  --color-black-middle: #414036;
-  --color-black-dark: #2d2c25;
-  --color-grey: #b6b4a2;
-  --color-body: var(--color-white);
-  --carousel-height: 313px;
-  --card-height: 320px;
-  --font-primary: "Lato";
-  --font-secondary: "Sriracha";
-}
-
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  font-family: var(--font-primary), cursive;
-  color: var(--color-body);
-  font-size: 16px;
-  line-height: 1.5;
-  background-color: var(--color-black);
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
-
-a:active,
-a:hover {
-  outline-width: 0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body main {
-  position: relative;
-  z-index: 2;
-  padding-bottom: 100px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-button {
-  box-shadow: none;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-p {
-  font-family: var(--font-primary), sans-serif;
-  margin: 0;
-}
-
-h1,
-.heading {
-  font-size: 46px;
-  line-height: 1.2;
-  color: var(--color-yellow);
-  text-shadow: 3px 3px var(--color-pink);
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.heading.logo {
-  font-family: var(--font-secondary), sans-serif;
-}
-
-h2,
-.section-heading {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: 36px;
-  line-height: 1.2;
-  font-weight: 400;
-  color: var(--color-yellow);
-  text-shadow: 3px 3px var(--color-pink);
-  margin: 40px 0 30px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.page-title {
-  font-size: 230px;
-  line-height: 1;
-  font-weight: 400;
-  color: var(--color-yellow);
-  text-shadow: 6px 6px var(--color-pink);
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 26px;
-}
-
-.general-text {
-  font-family: var(--font-secondary), sans-serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 1.2;
-  color: var(--color-body);
-  text-align: center;
-}
-
-.container {
-  max-width: 988px;
-  margin: 0 auto;
-}
-
-.container_half {
-  max-width: 494px;
-}
-
-.header {
-  padding: 50px 0 36px;
-  position: relative;
-}
-
-.subheading {
-  font-size: 21px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.2;
-  text-align: center;
-  color: var(--color-grey);
-  margin: 0;
-}
-
-@media all and (max-width: 767px) {
-  h1,
-  .heading {
-    font-size: 32px;
-  }
-
-  .subheading {
-    font-size: 18px;
-  }
-
-  h2,
-  .section-heading {
-    font-size: 28px;
-    margin: 40px 0 20px;
-  }
-
-  .page-title {
-    font-size: 118px;
-    text-shadow: 4px 4px var(--color-pink);
-  }
-
-  .header {
-    padding: 20px 0 30px;
-    overflow: hidden;
-  }
-
-}
-
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-}
-
-@keyframes loadingSpinner {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-  .slider {
+.slider {
   position: relative;
   background-color: var(--color-black-dark);
   margin: 0 16px;
@@ -6785,69 +6592,6 @@ h2,
   background-color: var(--color-black-light);
   height: 14px;
 }
-.button {
-  height: 64px;
-  padding: 19px 24px;
-  background-color: var(--color-yellow);
-  font-family: "Lato", sans-serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--color-black);
-  display: inline-block;
-  transition: 0.2s all;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.button:hover,
-.button:active,
-.button:focus {
-  background-color: var(--color-yellow-dark);
-}
-
-.button.button_block {
-  display: block;
-  width: 100%;
-}
-
-.button.is-loading {
-  pointer-events: none;
-}
-
-.button.is-loading:after {
-  content: "";
-  width: 24px;
-  height: 24px;
-  margin-left: 12px;
-  position: relative;
-  background: url(/assets/images/icons/loader-icon-sm.svg) center no-repeat;
-  background-size: cover;
-  vertical-align: bottom;
-  display: inline-block;
-  animation: loadingSpinner 1s infinite linear;
-}
-
-.btn-group {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.btn-group__button {
-  position: relative;
-}
-
-@media all and (max-width: 767px) {
-  .btn-group {
-    display: flex;
-  }
-
-  .btn-group__button {
-    flex-grow: 1;
-  }
-}
 </style>
 <body>
   <div class="container" id="holder" style="padding: 50px"></div>
@@ -6869,3 +6613,279 @@ h2,
 */
 
 /* TASK_14 SLIDER_MENU_PART_TWO */
+
+/* 
+Изменение значения с помощью Drag-and-Drop.
+
+Принцип работы Drag-and-Drop:
+1) Пользователь наводит курсор мыши на ползунок слайдера и кликает по нему.
+2) Зажав кнопку мыши он перемещает ползунок влево или вправо. 
+Ползунок перемещается по слайдеру, следуя за курсором.
+3) Пользователь отпускает кнопку мыши в любом месте слайдера.
+4) Ползунок перемещается на ближайший шаг слайдера.
+
+Небольшое отличие этой задачи от описанной в статье в том, что мы будем использовать 
+Pointer Events вместо событий мыши. Pointer Events – это более универсальные и 
+современные аналоги, которые срабатывают не только для мыши, но и других устройств ввода, 
+например, стилуса на сенсорных экранах. В контексте алгоритма Drag-and-Drop из статьи, 
+мы просто заменим события мыши на аналогичные:
+
+1) событию mousedown соответствует событие pointerdown;
+2) событию mousemove соответствует событие pointermove;
+3) событию mouseup соответствует событие pointerup;
+
+В остальном для нашей задачи они работают точно также как события мыши.
+
+Напоминаем, что для корректной работы нужно «выключить» встроенный браузерный Drag-and-Drop 
+для элемента с классом slider__thumb:
+
+// this.elem - ссылка на корневой элемент слайдера
+let thumb = this.elem.querySelector('.slider__thumb');
+
+thumb.ondragstart = () => false;
+
+Также для устройств с сенсорными экранами, нужно предотвращать действия браузера по умолчанию 
+для событий pointerdown и pointermove.
+
+Требования к реализации
+
+1) Элемент для перетаскивания (ползунок) имеет класс – slider__thumb.
+2) После начала перетаскивания ползунка, корневому элементу слайдера нужно добавить класс slider_dragging. 
+После окончания перетаскивания этот класс должен быть удален.
+3) Технически перемещать ползунок нужно точно также, как в предыдущей задаче:
+
+// this.elem - ссылка на корневой элемент слайдера
+let thumb = this.elem.querySelector('.slider__thumb');
+let progress = this.elem.querySelector('.slider__progress');
+
+let leftPercents = 55; // Значение в процентах от 0 до 100
+
+thumb.style.left = `${leftPercents}%`;
+progress.style.width = `${leftPercents}%`;
+
+4) Ползунок нужно перемещать, даже если во время перетаскивания пользователь увел 
+курсор со слайдера. Подумайте, куда именно нужно повесить обработчик для отслеживания перемещений.
+5) По мере перемещения ползунка по слайдеру, нам нужно выбирать конкретные значение шага из доступного 
+диапазона (0, 1, 2, 3, 4). Если ползунок находится между какими-то двумя значениями (шагами), 
+то выбрать нужно тот шаг, к которому курсор мыши находится ближе.
+
+Выбранное значение необходимо отображать динамически во время перемещения:
+
+1) Отобразить выбранное значение в верстке, записав его внутрь элемента с классом slider__value.
+2) Визуально выделить шаг на слайдере, добавив класс slider__step-active элементу span внутри 
+элемента с классом slider__steps. Например, если значение – 3, 
+то выделить нужно 4-ый по счету span, т.к. у нас счет начинается с 0.
+
+Генерация пользовательского события
+
+После того как пользователь отпускает кнопку мыши, и выбрано новое значение слайдера, 
+нам нужно сгенерировать событие slider-change с новым значением на корневом элементе слайдера, 
+так же как и в предыдущей задаче:
+
+new CustomEvent('slider-change', { // имя события должно быть именно 'slider-change'
+  detail: this.value, // значение 0, 1, 2, 3, 4
+  bubbles: true // событие всплывает - это понадобится в дальнейшем
+})
+
+Как перемещать ползунок и получать значение?
+
+Код приведенный ниже следует писать внутри обработчика события pointermove.
+
+Для начала определим расстояние от начала элемента слайдера до места, на котором находился 
+курсор в момент клика. Мы будем использовать координаты относительно окна. 
+Возьмем координату по горизонтали (из свойства clientX объекта события) и вычтем из нее 
+координату крайней левой точки слайдера, которую получим с помощью метода getBoundingClientRect():
+
+let left = event.clientX - this.elem.getBoundingClientRect().left;
+// event - объект события "pointermove"
+// this.elem - ссылка на корневой элемент слайдера
+
+Для получения значения в процентах относительно всего слайдера, разделим предыдущее 
+значение на ширину слайдера и умножим на 100. При этом нужно не забыть, что значение в 
+процентах должно быть в пределах от 0 до 100:
+
+let left = event.clientX - this.elem.getBoundingClientRect().left;
+let leftRelative = left / this.elem.offsetWidth;
+
+if (leftRelative < 0) {
+  leftRelative = 0;
+}
+
+if (leftRelative > 1) {
+  leftRelative = 1;
+}
+
+let leftPercents = leftRelative * 100;
+
+Полученное значение в процентах используем для перемещения 
+ползунка и «закрашивания» области до него:
+
+// this.elem - ссылка на корневой элемент слайдера
+let thumb = this.elem.querySelector('.slider__thumb');
+let progress = this.elem.querySelector('.slider__progress');
+
+thumb.style.left = `${leftPercents}%`;
+progress.style.width = `${leftPercents}%`;
+
+Итак, мы переместили ползунок, в тоже время нам нужно получить конкретное значение 
+слайдера (0, 1, 2, 3, 4). Для этого возьмем промежуточное относительное значение 
+из вычислений выше (переменная leftRelative) и умножим его на количество сегментов:
+
+// steps - количество шагов слайдера, для нашего примера - 5
+let segments = steps - 1;
+let approximateValue = leftRelative * segments;
+
+В итоге вероятнее всего вы получите некое дробное значение, например: 1.2345, 3.442 или подобное. 
+При этом оно не будет меньше 0 и не больше максимально возможного значения слайдера, 
+для нашего примера – это 4. Чтобы получить конкретно значение, которое нужно задать слайдеру, 
+округлим дробное значение по правилам математики:
+
+let value = Math.round(approximateValue);
+Его мы и будем использовать для отображения в слайдере, как это требуется выше.
+*/
+
+// <<<< решение:
+
+/*
+
+Доп. файлы:
+
+index6.js; 
+path: './js/index6.js';
+
+create-elements.js - в index6.js;
+path: '../libs/lib/create-elements.js';
+
+INDEX.HTML:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Бангкок Экспресс: Пошаговый слайдер часть 2</title>
+
+  <link rel="stylesheet" href="/css/styles/slider_menu.css" />
+</head>
+<style>
+.slider {
+  position: relative;
+  background-color: var(--color-black-dark);
+  margin: 0 16px;
+  width: 330px;
+  height: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.slider__progress {
+  height: 8px;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, #f3e273 0%, #dd6428 52%, #d31c34 100%);
+  transform: translate(0, -50%);
+}
+
+.slider_dragging .slider__thumb {
+  cursor: grabbing;
+}
+
+.slider__thumb {
+  background-color: var(--color-white);
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 0;
+  margin-left: -10px;
+  transform: translate(0, -50%);
+  cursor: grab;
+}
+
+.slider__value {
+  color: var(--color-body);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+  cursor: default;
+}
+
+.slider__steps {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+}
+
+.slider__steps > span {
+  background-color: var(--color-black-dark);
+  display: inline-flex;
+  width: 2px;
+  height: 9px;
+  margin-left: -1px;
+  transition: 0.2s height;
+}
+
+.slider__steps > span:first-child,
+.slider__steps > span:last-child {
+  margin-left: 0;
+}
+
+.slider__steps > .slider__step-active {
+  background-color: var(--color-black-light);
+  height: 14px;
+}
+</style>
+
+<body>
+  <div class="container" id="holder" style="padding: 50px;">
+  </div>
+
+  <script type="module">
+    import StepSlider from './js/index6.js';
+
+    let stepSlider = new StepSlider({
+      steps: 5
+    });
+
+    holder.append(stepSlider.elem);
+
+    holder.addEventListener('slider-change', (event) => console.log(event));
+  </script>
+</body>
+
+</html>
+
+*/
+
+
+/* << Взаимодействие с сервером >> */
+
+/* TASK_1 */
+
+/*
+
+*/
+
+// <<<< решение:
+
+/*
+
+*/
