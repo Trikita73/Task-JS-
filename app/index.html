@@ -21,33 +21,30 @@
 	<meta name="theme-color" content="#202222">
 	<!-- Custom Browsers Color End -->
 
-	<link rel="stylesheet" href="css/main.min.css">
+
 
 </head>
 
 <!-- Main_body -->
 <body class="is_home">
-	<!-- Header -->
-	<header class="top_line ">
-		<div class="logo">
-			<a href="#">JS</a>
-		</div>
+	<select id="genres">
+		<option value="rock">Рок</option>
+		<option value="blues" selected>Блюз</option>
+	</select>
 
-	</header>
+	<script>
+		// 1)
+		let selectedOption = genres.options[genres.selectedIndex];
+		alert( selectedOption.value );
+		alert( selectedOption.text );
 
-	<!-- section js -->
-	<section class="js_section">
-		<h2>JavaScript</h2>
-	</section>
+		// 2) 
+		let newOption = new Option("Классика", "classic");
+		genres.append(newOption);
 
-	<!-- footer_bottom -->
-	<footer class="bottom_footer">
-		<div class="container text-center">
-			<div class="footer_copyright">2022 © <span class="logo_footer logo_litera">JS</span></div>
-			<p>TriKita73</p>
-		</div>
-	</footer>
-	<script src="js/common.min.js"></script>
+		// 3) 
+		newOption.selected = true;
+	</script>
 
 </body>
 </html>
