@@ -7255,3 +7255,107 @@ padding: 0;
 
 </html>
 */
+
+
+/* TASK_4 */
+
+/*
+Мышь, управляемая клавиатурой
+
+Установите фокус на мышь. Затем используйте клавиши со стрелками, чтобы её двигать
+
+P.S. Не добавляйте обработчики никуда, кроме элемента #mouse.
+
+Мы можем использовать mouse.onclick для обработки клика и сделать мышь «перемещаемой» 
+с помощью position:fixed, а затем использовать mouse.onkeydown для обработки клавиш со стрелками.
+
+нная проблема в том, что keydown срабатывает только на элементах с фокусом. 
+И нам нужно добавить tabindex к элементу. Так как изменять HTML запрещено, 
+то для этого мы можем использовать свойство mouse.tabIndex.
+
+P.S. Мы также можем заменить mouse.onclick на mouse.onfocus.
+*/
+
+// <<<< решение:
+
+/*
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Кликните по "изображению" мыши и перемещайте её с помощью клавиш со стрелками.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    mouse.tabIndex = 0;
+
+	mouse.onclick = function() {
+		this.style.left = this.getBoundingClientRect().left + 'px';
+		this.style.top = this.getBoundingClientRect().top + 'px';
+
+		this.style.position = 'fixed';
+	};
+
+	mouse.onkeydown = function(e) {
+		switch (e.key) {
+			case 'ArrowLeft':
+				this.style.left = parseInt(this.style.left) - this.offsetWidth + 'px';
+				return false;
+			case 'ArrowUp':
+				this.style.top = parseInt(this.style.top) - this.offsetHeight + 'px';
+				return false;
+			case 'ArrowRight':
+				this.style.left = parseInt(this.style.left) + this.offsetWidth + 'px';
+				return false;
+			case 'ArrowDown':
+				this.style.top = parseInt(this.style.top) + this.offsetHeight + 'px';
+				return false;
+		}
+	};
+  </script>
+
+</body>
+
+</html>
+*/
+
+
+/* TASK_5 */
+
+/*
+
+*/
+
+// <<<< решение:
+
+/*
+
+*/
