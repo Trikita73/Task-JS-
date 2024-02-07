@@ -7698,11 +7698,119 @@ body {
 /* TASK_7 */
 
 /*
+Получите данные о пользователях GitHub
 
+Создайте асинхронную функцию getUsers(names), которая получает на вход массив 
+логинов пользователей GitHub, запрашивает у GitHub информацию о них и возвращает 
+массив объектов-пользователей.
+
+Информация о пользователе GitHub с логином USERNAME доступна 
+по ссылке: https://api.github.com/users/USERNAME.
+
+Важные детали:
+
+1) На каждого пользователя должен приходиться один запрос fetch.
+2) Запросы не должны ожидать завершения друг друга. Надо, 
+чтобы данные приходили как можно быстрее.
+3) Если какой-то запрос завершается ошибкой или оказалось, что данных о 
+запрашиваемом пользователе нет, то функция должна возвращать null в массиве результатов.
+
+Чтобы получить сведения о пользователе, 
+нам нужно вызвать fetch('https://api.github.com/users/USERNAME').
+
+Если ответ приходит cо статусом 200, то вызываем метод .json(), чтобы прочитать JS-объект.
+
+А если запрос завершается ошибкой или код статуса в ответе отличен от 200, 
+то мы просто возвращаем null в массиве результатов.
+
+Код:
+
+async function getUsers(names) {
+  let jobs = [];
+
+  for(let name of names) {
+    let job = fetch(`https://api.github.com/users/${name}`).then(
+      successResponse => {
+        if (successResponse.status != 200) {
+          return null;
+        } else {
+          return successResponse.json();
+        }
+      },
+      failResponse => {
+        return null;
+      }
+    );
+    jobs.push(job);
+  }
+
+  let results = await Promise.all(jobs);
+
+  return results;
+}
+
+Пожалуйста, обратите внимание: вызов .then прикреплён к fetch, чтобы, 
+когда ответ получен, сразу начинать считывание данных с помощью .json(), 
+не дожидаясь завершения других запросов.
+
+Если бы мы использовали await Promise.all(names.map(name => fetch(...))) 
+и вызывали бы .json() на результатах запросов, то пришлось бы ждать, 
+пока завершатся все из них.
+
+Вызывая .json() сразу после каждого fetch, мы добились того, что считывание 
+присланных по каждому запросу данных происходит независимо от других запросов.
+
+Это пример того, как относительно низкоуровневое Promise API может быть полезным, 
+даже если мы в основном используем async/await в коде.
 */
 
 // <<<< решение:
 
 /*
+Доп. файлы:
 
+fetch.js; 
+path: '../js/fetch.js';
+
+HTML:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fetch</title>
+</head>
+<body>
+	<script src="https://ru.js.cx/test/libs.js"></script>
+	<script src="../js/fetch.js"></script>
+<script>
+
+  async function getUsers(names) {
+    let jobs = [];
+
+	for(let name of names) {
+		let job = fetch(`https://api.github.com/users/${name}`).then(
+			successResponse => {
+				if (successResponse.status != 200) {
+					return null;
+				} else {
+					return successResponse.json();
+				}
+			},
+			failResponse => {
+				return null;
+			}
+		);
+		jobs.push(job);
+	}
+
+	let results = await Promise.all(jobs);
+
+	return results;
+  }
+
+</script>
+</body>
+</html>
 */
