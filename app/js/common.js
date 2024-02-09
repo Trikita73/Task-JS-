@@ -7853,6 +7853,63 @@ delay(3000).then(() => alert('выполнилось через 3 секунды
 /* TASK_9 */
 
 /*
+Анимированный круг
+
+Напишите функцию showCircle(cx, cy, radius), которая 
+будет рисовать постепенно растущий круг.
+
+cx,cy – координаты центра круга относительно окна браузера,
+radius – радиус круга.
+*/
+
+// <<<< решение:
+
+/*
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .circle {
+      transition-property: width, height;
+      transition-duration: 2s;
+      position: fixed;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+	<button onclick=" showCircle(150, 150, 100)">showCircle(150, 150, 100)</button>
+
+	<script>
+		function showCircle(cx, cy, radius, callback) {
+			let div = document.createElement('div');
+			div.style.width = 0;
+			div.style.height = 0;
+			div.style.left = cx + 'px';
+			div.style.top = cy + 'px';
+			div.className = 'circle';
+			document.body.append(div);
+
+			setTimeout(() => {
+				div.style.width = radius * 2 + 'px';
+				div.style.height = radius * 2 + 'px';
+
+			}, 0);
+		}
+	</script>
+</body>
+</html>
+*/
+
+/* TASK_10 */
+
+/*
 
 */
 
