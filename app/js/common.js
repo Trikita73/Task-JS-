@@ -8051,3 +8051,31 @@ showCircle(150, 150, 100).then(div => {
 	}
 </script>
 */
+
+
+/* TASK_12 */
+
+/*
+Преобразуйте объект в JSON, а затем обратно в обычный объект
+
+Преобразуйте user в JSON, затем прочитайте этот JSON в другую переменную.
+
+let user = {
+  name: "Василий Иванович",
+  age: 35
+};
+*/
+
+// <<<< решение:
+
+/*
+<script>
+	let user = {
+		name: "Василий Иванович",
+		age: 35 
+	};
+
+	let user2 = JSON.parse(JSON.stringify(user));
+	alert(user2);
+</script>
+*/
