@@ -1,53 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<meta charset="utf-8">
-	<base href="/">
-
-	<title>JS</title>
-	<meta name="description" content="Test Platfrom for task JavaScript">
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
-	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="path/to/image.jpg">
-	<link rel="icon" href="img/favicon/favicon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
-	<!-- Template Basic Images End -->
-	
-	<!-- Custom Browsers Color Start -->
-	<meta name="theme-color" content="#202222">
-	<!-- Custom Browsers Color End -->
-
-	<link rel="stylesheet" href="css/main.min.css">
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Бангкок Экспресс: Иконка корзины</title>
 </head>
+<body>
+	<header class="header container">
+		<h1 class="heading logo">Бангкок Экспресс</h1>
+		<h3 class="subheading">Отличная еда・Бесплатная доставка・Лучшие цены</h3>
 
-<!-- Main_body -->
-<body class="is_home">
-	<!-- Header -->
-	<header class="top_line ">
-		<div class="logo">
-			<a href="#">JS</a>
+		<div data-cart-icon-holder>
+			<!--СЮДА ВСТАВЛЯЕТСЯ CART-ICON-->
 		</div>
-
 	</header>
 
-	<!-- section js -->
-	<section class="js_section">
-		<h2>JavaScript</h2>
-	</section>
+	<main>
+		<div class="container" style="padding-bottom: 40px;">
+			<h2 class="section-heading">Наше Меню</h2>
 
-	<!-- footer_bottom -->
-	<footer class="bottom_footer">
-		<div class="container text-center">
-			<div class="footer_copyright">2021-2024 © <span class="logo_footer logo_litera">JS</span></div>
-			<p>TriKita73</p>
+			<div>
+				<button class="button" data-add-product>Добавить один товар</button>
+			</div>
+
+			<div style="padding-top: 40px;">
+				<button class="button" data-remove-all-products>Удалить все товары</button>
+			</div>
 		</div>
-	</footer>
-	<script src="js/common.min.js"></script>
 
+		<div class="container">
+			<div class="products-grid is-loading">
+				<div class="products-grid__skeleton">
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+					<div class="products-grid__skeleton-item"></div>
+				</div>
+
+				<div class="products-grid__inner"></div>
+			</div>
+		</div>
+	</main>
+
+	<script type="module">
+		import CartIcon from './index.js';
+
+		let product = {
+			price: 7,
+			count: 1,
+		}
+
+		let cart = {
+			products: [],
+
+			isEmpty() {
+				return this.products.length === 0;
+			},
+
+			getTotalCount() {
+				return this.products.length;
+			},
+
+			getTotalPrice() {
+				return this.products.reduce((totalPrice, product) => totalPrice + product.price, 0);
+			}
+		}
+
+		let cartIcon = new CartIcon();
+		let cartIconHolder = document.querySelector('[data-cart-icon-holder]');
+		cartIconHolder.append(cartIcon.elem);
+
+		let addProductButton = document.querySelector('[data-add-product]');
+		let removeAllProductsButton = document.querySelector('[data-remove-all-products]');
+
+		addProductButton.onclick = () => {
+			let productToAdd = Object.assign({}, product);
+			cart.products.push(productToAdd);
+
+			cartIcon.update(cart);
+		};
+
+		removeAllProductsButton.onclick = () => {
+			cart.products = [];
+
+			cartIcon.update(cart);
+		};
+	</script>
 </body>
 </html>
