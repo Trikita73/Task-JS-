@@ -5,6 +5,382 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Бангкок Экспресс: Иконка корзины</title>
 </head>
+<style>
+.cart-icon {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 57px;
+  height: 63px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.cart-icon.shake {
+  animation: cartshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  backface-visibility: hidden;
+  transform-origin: top right;
+}
+
+.cart-icon__inner {
+  background: url("/img/icons/cart-icon.svg") center no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.cart-icon_visible {
+  display: block;
+}
+
+.cart-icon__count {
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 900;
+  color: var(--color-pink);
+  margin-top: 16px;
+}
+
+.cart-icon__price {
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: var(--color-black);
+  margin: 0;
+}
+
+@keyframes cartshake {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cart-icon {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    transform: none;
+    z-index: 95;
+  }
+
+  .cart-icon:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    border: 55px solid transparent;
+    border-right-color: var(--color-pink);
+    border-top-color: var(--color-pink);
+    z-index: 1;
+  }
+
+  .cart-icon__inner {
+    position: relative;
+    z-index: 2;
+  }
+}
+.products-grid .products-grid__inner {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, calc(33.3333% - 14px));
+}
+
+.products-grid.is-loading .products-grid__inner {
+  display: none;
+}
+
+@media all and (max-width: 767px) {
+  .products-grid .products-grid__inner {
+    display: block;
+    padding: 16px;
+    background-color: var(--color-black-light);
+  }
+}
+
+.products-grid .products-grid__skeleton {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, calc(33.3333% - 14px));
+}
+
+.products-grid .products-grid__skeleton {
+  display: none;
+}
+
+.products-grid.is-loading .products-grid__skeleton {
+  display: grid;
+  pointer-events: none;
+}
+
+.products-grid.is-loading .products-grid__skeleton-item {
+  position: relative;
+  height: var(--card-height);
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s all;
+}
+
+.products-grid.is-loading .products-grid__skeleton-item:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--color-black-middle);
+}
+
+.products-grid.is-loading .products-grid__skeleton-item:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -32px;
+  margin-left: -32px;
+  top: 50%;
+  left: 50%;
+  background: url(/img/icons/loader-icon.svg) center no-repeat;
+  background-size: cover;
+  animation: loadingSpinner 1s infinite linear;
+}
+@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
+@import "./button.css";
+
+:root {
+  --color-white: #fff;
+  --color-black: #1f1e19;
+  --color-yellow: #ecd41a;
+  --color-yellow-dark: #c8b416;
+  --color-pink: #c92086;
+  --color-black-light: #6e6a51;
+  --color-black-middle: #414036;
+  --color-black-dark: #2d2c25;
+  --color-grey: #b6b4a2;
+  --color-body: var(--color-white);
+  --carousel-height: 313px;
+  --card-height: 320px;
+  --font-primary: "Lato";
+  --font-secondary: "Sriracha";
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-primary), cursive;
+  color: var(--color-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-black);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body main {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+p {
+  font-family: var(--font-primary), sans-serif;
+  margin: 0;
+}
+
+h1,
+.heading {
+  font-size: 46px;
+  line-height: 1.2;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading.logo {
+  font-family: var(--font-secondary), sans-serif;
+}
+
+h2,
+.section-heading {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 40px 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.page-title {
+  font-size: 230px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 6px 6px var(--color-pink);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.general-text {
+  font-family: var(--font-secondary), sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--color-body);
+  text-align: center;
+}
+
+.container {
+  max-width: 988px;
+  margin: 0 auto;
+}
+
+.container_half {
+  max-width: 494px;
+}
+
+.header {
+  padding: 50px 0 36px;
+  position: relative;
+}
+
+.subheading {
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-grey);
+  margin: 0;
+}
+
+@media all and (max-width: 767px) {
+  h1,
+  .heading {
+    font-size: 32px;
+  }
+
+  .subheading {
+    font-size: 18px;
+  }
+
+  h2,
+  .section-heading {
+    font-size: 28px;
+    margin: 40px 0 20px;
+  }
+
+  .page-title {
+    font-size: 118px;
+    text-shadow: 4px 4px var(--color-pink);
+  }
+
+  .header {
+    padding: 20px 0 30px;
+    overflow: hidden;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@keyframes loadingSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
 <body>
 	<header class="header container">
 		<h1 class="heading logo">Бангкок Экспресс</h1>
@@ -52,7 +428,7 @@
 	</main>
 
 	<script type="module">
-		import CartIcon from './index.js';
+		import CartIcon from './js/index7.js';
 
 		let product = {
 			price: 7,
