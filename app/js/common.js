@@ -8884,3 +8884,518 @@ h2,
 </body>
 </html>
 */
+
+
+/* Task_15  Table_producs */
+
+/*
+Список товаров
+
+Создайте класс ProductGrid, описывающий компонент «Список товаров».
+
+В качестве аргумента в конструктор класса передаётся 
+массив объектов товаров:
+
+let products = [
+  {
+    name: "Laab kai chicken salad", // название товара
+    price: 10, // цена товара
+    category: "salads", // категория, к которой он относится, нам это понадобится чуть позже
+    image: "laab_kai_chicken_salad.png", // название картинки товара
+    id: "laab-kai-chicken-salad" // уникальный идентификатор товара, нужен для добавления товара в корзину
+  },
+
+  {
+    name: "Som tam papaya salad",
+    price: 9.5,
+    category: "salads",
+    image: "som_tam_papaya_salad.png",
+    id: "som-tam-papaya-salad",
+    spiciness: 0
+  },
+
+  // и др.
+];
+
+let productGrid = new ProductGrid(products);
+
+После этого в productGrid.elem должен быть доступен корневой 
+DOM-элемент списка товаров. Вот его основа:
+
+<div class="products-grid">
+  <div class="products-grid__inner">
+    <!--ВОТ ТУТ БУДУТ КАРТОЧКИ ТОВАРОВ-->
+  </div>
+</div>`
+
+Для каждого объекта из массива товаров нужно отрисовать карточку 
+товара на основе класса ProductCard, который мы делали ранее, 
+и вставить их внутрь элемента с классом products-grid__inner. 
+Здесь используется точно такой же формат объекта товара как и в 
+классе ProductCard.
+
+Фильтрация товаров
+
+Как вы помните, в нашем ресторане есть возможность показывать 
+только те товары, которые соответствуют критериям фильтрации, 
+например, определённой категории товаров, максимальной остроте и др.
+
+Чтобы это работало, нам нужно создать метод updateFilter(filters), 
+который отобразит в списке товаров только те, которые соответствуют 
+критериям фильтрации.
+
+В качестве аргумента он принимает объект filters:
+
+let filters = {
+  noNuts: true, // true/false
+  vegeterianOnly: false, // true/false
+  maxSpiciness: 3, // числа от 0 до 4
+  category: 'soups' // уникальный идентификатор категории товара
+};
+
+productGrid.updateFilter(filters);
+
+После вызова метода, должны быть показаны только те товары, 
+которые удовлетворяют значениям новых фильтров. Давайте разберём 
+отдельно по каждому свойству:
+
+1) filters.noNuts – true/false – если значение true, то нужно показать 
+только товары без орехов, т.е. товары, у которых в свойстве nuts 
+стоит false или такое свойство отсутствует вовсе. 
+Если значение false – то не учитываем этот критерий.
+
+2) filters.vegeterianOnly – true/false – если значение true, 
+то нужно показать только вегетарианские товары, т.е. товары, 
+у которых в свойстве vegeterian стоит true. 
+Если значение false – то не учитываем этот критерий.
+
+3) filters.maxSpiciness – число от 0 до 4 – показывать только те товары, 
+у которых в свойстве spiciness число меньше или равное заданному.
+
+4) filters.category – уникальный идентификатор категории – показывать 
+только те товары, у которых в свойстве category такое же значение. 
+Если здесь передана пустая строка или такого свойства нет в 
+filters – показывать все товары.
+
+Обращаем ваше внимание, что метод updateFilter, может 
+вызываться с неполным объектом filters:
+
+productGrid.updateFilter({ noNuts: true });
+productGrid.updateFilter({ category: 'soups' });
+
+// После чего должны быть показаны товары для критериев:
+// noNuts: true и category: 'soups'
+
+В таком случае, мы должны сохранять критерии 
+фильтрации после предыдущего вызова.
+
+Например, после выполнения кода из примера выше, должны 
+бы показаны товары, которые соответсвуют обоим 
+критериям фильтрации: noNuts: true и category: 'soups'.
+*/
+
+// <<<< решение:
+
+/*
+Доп. файлы:
+
+index8:
+path: './js/index8.js';
+path: '../libs/lib/create-elements.js';
+path: '../js/index1.js';
+
+product:
+path: './libs/products/products.js';
+
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бангкок Экспресс: Иконка корзины</title>
+</head>
+<style>
+.controls {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 5px solid var(--color-yellow);
+}
+
+.controls__row {
+  margin-top: 10px;
+}
+.products-grid .products-grid__inner {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, calc(33.3333% - 14px));
+}
+
+.products-grid.is-loading .products-grid__inner {
+  display: none;
+}
+
+@media all and (max-width: 767px) {
+  .products-grid .products-grid__inner {
+    display: block;
+    padding: 16px;
+    background-color: var(--color-black-light);
+  }
+}
+
+// @import '../product-grid-skeleton/index.css'; 
+
+.card {
+	height: var(--card-height);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: 0.2s all;
+	cursor: pointer;
+  }
+  
+  .card:hover,
+  .card:hover .card__body {
+	background-color: #3b3a31;
+  }
+  
+  .card:hover .card__top {
+	background-color: #4e4d41;
+  }
+  
+  .card__top {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	background-color: var(--color-black-middle);
+  }
+  
+  .card__image {
+	max-width: calc(100% - 100px);
+	width: 100%;
+  }
+  
+  .card__price {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: inline-block;
+	padding: 8px;
+	min-width: 72px;
+	text-align: center;
+	background-color: var(--color-pink);
+	color: var(--color-body);
+	font-family: var(--font-primary), sans-serif;
+	font-weight: 700;
+	font-size: 17px;
+	line-height: 1.2;
+  }
+  
+  .card__body {
+	height: 70px;
+	background-color: var(--color-black-dark);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+  }
+  
+  .card__title {
+	text-align: center;
+	font-weight: 500;
+	font-size: 21px;
+	font-style: italic;
+	line-height: 1.2;
+	width: 100%;
+  }
+  
+  .card__button {
+	background-color: var(--color-yellow);
+	width: 72px;
+	flex: 1 0 72px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+  }
+  
+  .card__button:hover,
+  .card__button:active {
+	background-color: var(--color-yellow-dark);
+  }
+  
+  @media all and (max-width: 767px) {
+	.card {
+	  margin-bottom: 16px;
+	  height: auto;
+	}
+  }@import "https://fonts.googleapis.com/css?family=Lato:400,400i|Source+Sans+Pro|Sriracha&display=swap";
+  @import "./css/styles/button.css";
+  
+  :root {
+	--color-white: #fff;
+	--color-black: #1f1e19;
+	--color-yellow: #ecd41a;
+	--color-yellow-dark: #c8b416;
+	--color-pink: #c92086;
+	--color-black-light: #6e6a51;
+	--color-black-middle: #414036;
+	--color-black-dark: #2d2c25;
+	--color-grey: #b6b4a2;
+	--color-body: var(--color-white);
+	--carousel-height: 313px;
+	--card-height: 320px;
+	--font-primary: "Lato";
+	--font-secondary: "Sriracha";
+  }
+  
+  html {
+	font-family: sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+	font-family: var(--font-primary), cursive;
+	color: var(--color-body);
+	font-size: 16px;
+	line-height: 1.5;
+	background-color: var(--color-black);
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  }
+  
+  a {
+	background-color: transparent;
+	-webkit-text-decoration-skip: objects;
+  }
+  
+  a:active,
+  a:hover {
+	outline-width: 0;
+  }
+  
+  * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+  
+  body main {
+	position: relative;
+	z-index: 2;
+	padding-bottom: 100px;
+  }
+  
+  .text-center {
+	text-align: center;
+  }
+  
+  select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+  }
+  
+  button {
+	box-shadow: none;
+	outline: none;
+	border: none;
+	background-color: transparent;
+  }
+  
+  p {
+	font-family: var(--font-primary), sans-serif;
+	margin: 0;
+  }
+  
+  h1,
+  .heading {
+	font-size: 46px;
+	line-height: 1.2;
+	color: var(--color-yellow);
+	text-shadow: 3px 3px var(--color-pink);
+	margin: 0;
+	text-align: center;
+	text-transform: uppercase;
+  }
+  
+  .heading.logo {
+	font-family: var(--font-secondary), sans-serif;
+  }
+  
+  h2,
+  .section-heading {
+	font-family: var(--font-secondary), sans-serif;
+	font-size: 36px;
+	line-height: 1.2;
+	font-weight: 400;
+	color: var(--color-yellow);
+	text-shadow: 3px 3px var(--color-pink);
+	margin: 40px 0 30px;
+	text-align: center;
+	text-transform: uppercase;
+  }
+  
+  .page-title {
+	font-size: 230px;
+	line-height: 1;
+	font-weight: 400;
+	color: var(--color-yellow);
+	text-shadow: 6px 6px var(--color-pink);
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 26px;
+  }
+  
+  .general-text {
+	font-family: var(--font-secondary), sans-serif;
+	font-style: italic;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 1.2;
+	color: var(--color-body);
+	text-align: center;
+  }
+  
+  .container {
+	max-width: 988px;
+	margin: 0 auto;
+  }
+  
+  .container_half {
+	max-width: 494px;
+  }
+  
+  .header {
+	padding: 50px 0 36px;
+	position: relative;
+  }
+  
+  .subheading {
+	font-size: 21px;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.2;
+	text-align: center;
+	color: var(--color-grey);
+	margin: 0;
+  }
+  
+  @media all and (max-width: 767px) {
+	h1,
+	.heading {
+	  font-size: 32px;
+	}
+  
+	.subheading {
+	  font-size: 18px;
+	}
+  
+	h2,
+	.section-heading {
+	  font-size: 28px;
+	  margin: 40px 0 20px;
+	}
+  
+	.page-title {
+	  font-size: 118px;
+	  text-shadow: 4px 4px var(--color-pink);
+	}
+  
+	.header {
+	  padding: 20px 0 30px;
+	  overflow: hidden;
+	}
+  
+  }
+  
+  @media only screen and (max-width: 480px) {
+	html {
+	  font-size: 100%;
+	}
+  }
+  
+  @keyframes loadingSpinner {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+  </style>
+  <body>
+	<div class="container controls">
+	  <div class="controls__row">
+		<label class="subheading">
+		  <input type="checkbox" data-no-nuts> No nuts 
+		</label>
+	  </div>
+  
+	  <div class="controls__row">
+		<label class="subheading">
+		  <input type="checkbox" data-vegetarian-only> Vegetarian Only
+		</label>
+	  </div>
+  
+	  <div class="controls__row">
+		<label class="subheading">
+		  <input type="checkbox" data-max-spiciness> Показать товары с максимальной остротой "2"
+		</label>
+	  </div>
+  
+	  <div class="controls__row">
+		<label class="subheading">
+		  <input type="checkbox" data-category> Показать товары категории "soups"
+		</label>
+	  </div>
+	</div>
+  
+	<div class="container" id="container"></div>
+  
+	<script type="module">
+	  import ProductGrid from './js/index8.js';
+	  import products from './libs/products/products.js';
+  
+	  let productGrid = new ProductGrid(products);
+  
+	  container.append(productGrid.elem);
+  
+	  let noNutsControl = document.querySelector('[data-no-nuts]');
+	  noNutsControl.addEventListener('change', () => {
+		productGrid.updateFilter({ noNuts: event.target.checked });
+	  });
+  
+	  let vegetarianOnlyControl = document.querySelector('[data-vegetarian-only]');
+	  vegetarianOnlyControl.addEventListener('change', () => {
+		productGrid.updateFilter({ vegeterianOnly: event.target.checked });
+	  });
+  
+	  let maxSpicinessControl = document.querySelector('[data-max-spiciness]');
+	  maxSpicinessControl.addEventListener('change', () => {
+		if(event.target.checked) {
+		  productGrid.updateFilter({ maxSpiciness: 2 });
+		} else {
+		  productGrid.updateFilter({ maxSpiciness: 4 });
+		}
+	  });
+  
+	  let categoryControl = document.querySelector('[data-category]');
+	  categoryControl.addEventListener('change', () => {
+		if (event.target.checked) {
+		  productGrid.updateFilter({ category: 'soups' });
+		} else {
+		  productGrid.updateFilter({ category: '' });
+		}
+	  });
+	</script>
+  </body>
+  </html>
+*/
