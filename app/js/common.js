@@ -9403,11 +9403,415 @@ HTML:
 /* Task_16  backet_part_1 */
 
 /*
+Корзина, часть 1
 
+«Корзина» – компонент интерфейса онлайн магазина или ресторана, 
+в который пользователи добавляют товары для заказа.
+
+В нашем проекте она состоит из двух компонентов:
+1) Компонент CartIcon («Иконка корзины») – его вы уже реализовали ранее.
+2) Компонент Cart («Корзина») – он отвечает за добавление и удаление товаров, 
+а также будет отправлять заказ на сервер.
+
+Компонент Cart достаточно сложный, поэтому мы его разбили на две части. 
+В этой задаче мы начнем работу над ним.
+
+Основа класса:
+
+export default class Cart {
+  cartItems = []; // (1) [product: {...}, count: N]
+
+  constructor(cartIcon) { // (2)
+    this.cartIcon = cartIcon;
+  }
+
+  onProductUpdate(cartItem) { // (3)
+    this.cartIcon.update(this);
+  }
+}
+
+1) Список товаров будем хранить в свойстве cartItems (детали ниже).
+2) В качестве аргумента в конструктор класса передаётся экземпляр 
+компонента CartIcon. Это понадобится, чтобы управлять иконкой 
+корзины и обновлять количество товаров в ней.
+3) Метод onProductUpdate будем вызывать при обновлении количества товаров,
+на текущий момент он будет обновлять cartIcon, позже мы добавим ему 
+возможностей.
+
+Формат хранения товаров в cartItems:
+
+Товар одного вида может быть добавлен несколько раз, поэтому нам 
+нужно помимо объекта товара хранить его количество.
+
+Все товары мы будем хранить в массиве в свойстве компонента cartItems. 
+Для каждого товара в массиве будет специальный объект, содержащий объект 
+этого товара в свойстве product и количество единиц этого товара в 
+свойстве count:
+
+this.cartItems = [
+  {
+    // Объект товара
+    product: {
+        name: "Laab kai chicken salad", // название товара
+        price: 10, // цена товара
+        category: "salads", // категория товара
+        image: "laab_kai_chicken_salad.png", // картинка товара (из папки assets)
+        id: "laab-kai-chicken-salad" // внутренний идентификатор товара
+    },
+    count: 2 // Количество товаров
+  },
+
+  // ...другие товары
+];
+
+Объект внутри свойства product имеет такую же структуру, 
+как объект товара из задачи про ProductCard.
+
+Реализуйте следующие методы:
+
+addProduct(product)
+
+Добавляет товар в корзину, будет вызываться внешним кодом.
+В качестве аргумента принимает объект товара вида:
+
+let product = {
+  name: "Laab kai chicken salad", // название товара
+  price: 10, // цена товара
+  category: "salads",
+  image: "laab_kai_chicken_salad.png",
+  id: "laab-kai-chicken-salad"
+};
+
+cart.addProduct(product);
+
+Требования к реализации метода:
+
+1) Если товара еще нет в корзине, то добавить его в массив cartItems с количеством 1:
+2) Если товар уже есть в корзине, то увеличить его количество на единицу.
+3) С обновлённым элементом cartItem вызвать метод onProductUpdate:
+
+export default class Cart {
+  // ...
+  addProduct(product) {
+    // ...
+
+    // cartItem - обновлённый/новосозданный элемент cartItems
+    this.onProductUpdate(cartItem);
+  }
+}
+
+Также этот метод нужно обезопасить от ситуации, когда товар не 
+существует. Например, если метод вызовут с product === null или вообще 
+без аргумента, то ничего в корзину добавлять не нужно, 
+код не должен генерировать ошибку.
+
+cart.addProduct();
+cart.addProduct(null);
+// Ничего не добавляется, при этом код НЕ генерирует ошибку
+
+Чтобы этого достичь, нужно добавить дополнительную проверку в начало метода.
+
+updateProductCount(productId, amount)
+
+Этот метод меняет количество единиц товара. 
+Он будет вызываться при кликах по специальным кнопкам внутри корзины.
+
+Он принимает два аргумента:
+
+1) productId – уникальный идентификтор товара, который есть 
+у каждого товара и хранится в свойстве id в объекте товара.
+2) amount – число для изменения количества единиц товара, 1 – если нужно увеличить 
+на единицу, -1 – если нужно уменьшить на единицу.
+
+Требования к реализации метода:
+
+1) Обновить количество единиц товара в массиве cartItems.
+2) Если после изменения количества единиц товара, 
+его количество стало 0, то этот товар нужно удалить из корзины.
+3) С обновлённым элементом cartItem вызвать метод onProductUpdate:
+
+export default class Cart {
+  // ...
+  updateProductCount(productId, amount) {
+    // ...
+
+    // cartItem - обновлённый элемент cartItems
+    this.onProductUpdate(cartItem);
+  }
+}
+
+Метод isEmpty()
+
+Возвращает true если корзина пустая 
+и false если в корзине есть хотя бы один товар.
+
+let cart = new Cart(cartIcon);
+
+cart.isEmpty(); // true/false
+
+Метод getTotalCount()
+
+Возвращает общее количество товаров в корзине. 
+Обратите внимание, что один товар может быть добавлен 
+несколько раз и это нужно учесть.
+
+let cart = new Cart(cartIcon);
+
+cart.getTotalCount(); // количество всех товаров
+
+Метод getTotalPrice()
+
+Возвращает стоимость всех товаров в корзине. 
+Для этого нужно сложить все цены товаров с учетом количества 
+каждого из них. Цену товара можно найти в свойстве price объекта товара.
+
+Помните, что товар может быть добавлен не в единственном экземпляре.
+
+let cart = new Cart(cartIcon);
+
+cart.getTotalPrice(); // стоимость товаров
 */
 
 // <<<< решение:
 
 /*
+Доп. файлы:
 
+index9:
+path: './js/index9.js';
+
+index7:
+path: './js/index7.js';
+
+create-element.js:
+path: '../libs/lib/create-elements.js'
+
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бангкок Экспресс: Корзина</title>
+
+  <link rel="stylesheet" href="/css/styles/common.css" />
+</head>
+<style>
+  .cart-icon {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 57px;
+    height: 63px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  
+  .cart-icon.shake {
+    animation: cartshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    backface-visibility: hidden;
+    transform-origin: top right;
+  }
+  
+  .cart-icon__inner {
+    background: url("/img/icons/cart-icon.svg") center no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 3px;
+  }
+  
+  .cart-icon_visible {
+    display: block;
+  }
+  
+  .cart-icon__count {
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: 900;
+    color: var(--color-pink);
+    margin-top: 16px;
+  }
+  
+  .cart-icon__price {
+    font-size: 11px;
+    line-height: 1.1;
+    font-weight: 500;
+    color: var(--color-black);
+    margin: 0;
+  }
+  
+  @keyframes cartshake {
+    0% {
+      transform: rotate(0);
+    }
+    15% {
+      transform: rotate(5deg);
+    }
+    30% {
+      transform: rotate(-5deg);
+    }
+    45% {
+      transform: rotate(4deg);
+    }
+    60% {
+      transform: rotate(-4deg);
+    }
+    75% {
+      transform: rotate(2deg);
+    }
+    85% {
+      transform: rotate(-2deg);
+    }
+    92% {
+      transform: rotate(1deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+  
+  @media all and (max-width: 767px) {
+    .cart-icon {
+      position: fixed;
+      top: 15px;
+      right: 10px;
+      transform: none;
+      z-index: 95;
+    }
+  
+    .cart-icon:before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      border: 55px solid transparent;
+      border-right-color: var(--color-pink);
+      border-top-color: var(--color-pink);
+      z-index: 1;
+    }
+  
+    .cart-icon__inner {
+      position: relative;
+      z-index: 2;
+    }
+  }
+</style>
+<body>
+  <header class="header container">
+    <h1 class="heading logo">Бангкок Экспресс</h1>
+    <h3 class="subheading">Отличная еда・Бесплатная доставка・Лучшие цены</h3>
+  
+    <div data-cart-icon-holder>
+      <!--СЮДА ВСТАВЛЯЕТСЯ CART-ICON-->
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-bottom: 40px;">
+      <h2 class="section-heading">Наше Меню</h2>
+
+      <div class="container">
+        <h3 style="font-size: 20px;">Добавление товаров</h3>
+
+        <button class="button" data-add-product-id="laab-kai-chicken-salad">Добавить товар 1</button>
+        <button class="button" data-add-product-id="som-tam-papaya-salad">Добавить товар 2</button>
+        <button class="button" data-add-product-id="tom-yam-kai">Добавить товар 3</button>
+      </div>
+
+      <div class="container">
+        <h3 style="font-size: 20px;">Изменение количества товаров</h3>
+
+        <p style="font-size: 16px;">Обращаем ваше внимание, что изменение количества товара будет корректно работать,
+          только если этот товар уже добавлен в корзину, иначе в консоле будет ошибка</p>
+
+        <div style="padding-top: 20px;">
+          <button class="button"
+          data-increase-count-product-id="laab-kai-chicken-salad">Увеличить на единицу количество Товара 1</button>
+        </div>
+
+        <div style="padding-top: 20px;">
+          <button class="button"
+          data-decrease-count-product-id="laab-kai-chicken-salad">Уменьшить на единицу количество Товара 1</button>
+        </div>
+      </div>
+
+      <script type="module">
+        import Cart from './js/index9.js';
+        import CartIcon from './js/index7.js';
+
+        let cartIcon = new CartIcon();
+        let cartIconHolder = document.querySelector('[data-cart-icon-holder]');
+        cartIconHolder.append(cartIcon.elem);
+
+        let products = [
+          {
+            "name": "Laab kai chicken salad",
+            "price": 10,
+            "category": "salads",
+            "image": "laab_kai_chicken_salad.png",
+            "id": "laab-kai-chicken-salad",
+            "spiciness": 2
+          },
+          {
+            "name": "Som tam papaya salad",
+            "price": 9.5,
+            "category": "salads",
+            "image": "som_tam_papaya_salad.png",
+            "id": "som-tam-papaya-salad",
+            "spiciness": 0
+          },
+          {
+            "name": "Tom yam kai",
+            "price": 7,
+            "category": "soups",
+            "image": "tom_yam.png",
+            "id": "tom-yam-kai",
+            "spiciness": 3
+          },
+        ]
+
+        let cart = new Cart(cartIcon);
+
+        document.addEventListener('click', (event) => {
+          let button = event.target.closest('.button');
+          if (!button) {
+            return;
+          }
+
+          if (button.dataset.addProductId) {
+            let addProductId = button.dataset.addProductId;
+            let productToAdd = products.find((product) => product.id === addProductId);
+            cart.addProduct(productToAdd);
+
+            return;
+          }
+          
+          if (button.dataset.increaseCountProductId) {
+            let productId = button.dataset.increaseCountProductId;
+            cart.updateProductCount(productId, 1);
+
+            return;
+          }
+
+          if (button.dataset.decreaseCountProductId) {
+            let productId = button.dataset.decreaseCountProductId;
+            cart.updateProductCount(productId, -1);
+
+            return;
+          }
+        })
+      </script>
+    </div>
+
+  </main>
+</body>
+</html>
 */
