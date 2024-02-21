@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<meta charset="utf-8">
-	<base href="/">
-
-	<title>JS</title>
-	<meta name="description" content="Test Platfrom for task JavaScript">
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
-	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="path/to/image.jpg">
-	<link rel="icon" href="img/favicon/favicon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
-	<!-- Template Basic Images End -->
-	
-	<!-- Custom Browsers Color Start -->
-	<meta name="theme-color" content="#202222">
-	<!-- Custom Browsers Color End -->
-
-	<link rel="stylesheet" href="css/main.min.css">
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Бангкок Экспресс: Корзина</title>
 </head>
+<body>
+	<header class="header container">
+		<h1 class="header logo">Бангкок Экспресс</h1>
+		<h3 class="subheading">Отличная еда・Бесплатная доставка・Лучшие цены</h3>
 
-<!-- Main_body -->
-<body class="is_home">
-	<!-- Header -->
-	<header class="top_line ">
-		<div class="logo">
-			<a href="#">JS</a>
+		<div data-cart-icon-holder>
+			<!--СЮДА ВСТАВЛЯЕТСЯ CART-ICON-->
 		</div>
-
 	</header>
 
-	<!-- section js -->
-	<section class="js_section">
-		<h2>JavaScript</h2>
-	</section>
+	<main>
+		<div class="container" style="padding-bottom: 40px;">
+			<h2 class="section-heading">Наше Меню</h2>
 
-	<!-- footer_bottom -->
-	<footer class="bottom_footer">
-		<div class="container text-center">
-			<div class="footer_copyright">2021-2024 © <span class="logo_footer logo_litera">JS</span></div>
-			<p>TriKita73</p>
+			<button class="button" data-add-product-id="laab-kai-chicken-salad">Добавить товар 1</button>
+			<button class="button" data-add-product-id="som-tam-papaya-salad">Добавить товар 2</button>
+			<button class="button" data-add-product-id="tom-yam-kai">Добавить товар 3</button>
 		</div>
-	</footer>
-	<script src="js/common.min.js"></script>
+	</main>
 
+	<script type="module">
+		import Cart from './index.js';
+		import CartIcon from '../1-task/index.js';
+
+		let CartIcon = new CartIcon();
+		let CartIconHolder = document.querySelector('[data-cart-icon-holder]');
+		CartIconHolder.append(CartIcon.elem);
+
+		let products = [
+			{
+				"name": "Laab kai chicken salad",
+				"price": 10,
+				"category": "salads",
+				"image": "laab_kai_chicken_salad.png",
+				"id": "laab-kai-chicken-salad",
+				"spiciness": 2
+			},
+			{
+				"name": "Som tam papaya salad",
+				"price": 9.5,
+				"category": "salads",
+				"image": "som_tam_papaya_salad.png",
+				"id": "som-tam-papaya-salad",
+				"spiciness": 0
+			},
+			{
+				"name": "Tom yam kai",
+				"price": 7,
+				"category": "soups",
+				"image": "tom_yam.png",
+				"id": "tom-yam-kai",
+				"spiciness": 3
+			},
+		]
+
+		let cart = new Cart(cartIcon);
+
+		document.addEventListener('click', (event) => {
+			let button = event.target.closest('.button');
+			if (!button) {
+				return;
+			}
+
+			let addProductId = button.dataset.addProductId;
+			let productToAdd = products.find((product) => product.id === addProductId);
+
+			if (productToAdd) {
+				cart.addProduct(productToAdd);
+			}
+		})
+	</script>
 </body>
 </html>
