@@ -1,7 +1,9 @@
 import createElement from '../libs/lib/create-elements.js';
 import escapeHtml from '../libs/lib/escape-html.js';
+//import escapeHtml from '../../assets/lib/escape-html.js';
 
-import modal from '../js/index7.js';
+import Modal from './index7.js';
+//import Modal from '../../7-module/2-task/index.js';
 
 export default class Cart {
     cartItems = []; // [product: {...}, count: N]
@@ -108,7 +110,7 @@ export default class Cart {
 
 
     renderModal() {
-        this.modal = new modal();
+        this.modal = new Modal();
 
         this.modal.setTitle("Your order");
 
@@ -194,7 +196,7 @@ export default class Cart {
                 <p>
                     Order successful! Your order is being cooked :) <br>
                     We’ll notify you about delivery time shortly.<br>
-                    <img src="/assets/images/delivery.gif">
+                    <img src="/img/gif/delivery.gif">
                 </p>
             </div>
         `;
