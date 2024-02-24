@@ -1,9 +1,8 @@
 import createElement from '../libs/lib/create-elements.js';
 import escapeHtml from '../libs/lib/escape-html.js';
-//import escapeHtml from '../../assets/lib/escape-html.js';
 
-import Modal from './index7.js';
-//import Modal from '../../7-module/2-task/index.js';
+import Modal from './index4.js';
+
 
 export default class Cart {
     cartItems = []; // [product: {...}, count: N]
@@ -83,7 +82,7 @@ export default class Cart {
         </div>`);
     }
 
-    renderOrderFrom() {
+    renderOrderForm() {
         return createElement(`<form class="cart-form">
         <h5 class="cart-form__title">Delivery</h5>
         <div class="cart-form__group cart-form__group_row">
@@ -120,16 +119,16 @@ export default class Cart {
             this.modalBody.append(this.renderProduct(product, count));
         }
 
-        this.modalBody.append(this.renderorderFrom());
+        this.modalBody.append(this.renderOrderForm());
 
-        this.modalBody.addEventlisteners("click", this.onModalBodyClick);
+        this.modalBody.addEventlistener("click", this.onModalBodyClick);
 
-        this.modalBody.querySelector("from").onsumbit = (event) => this.onSubmit(event);
+        this.modalBody.querySelector("form").onsumbit = (event) => this.onSubmit(event);
 
         this.modal.setBody(this.modalBody);
 
         // when modal is closed, we forget about it, don't update it any more
-        this.modal.elem.addEventlisteners('modal-close', () => {
+        this.modal.elem.addEventListener('modal-close', () => {
             this.modal = null;
             this.modalBody = null;
         });
