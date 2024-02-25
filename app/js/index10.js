@@ -3,7 +3,6 @@ import escapeHtml from '../libs/lib/escape-html.js';
 
 import Modal from './index4.js';
 
-
 export default class Cart {
     cartItems = []; // [product: {...}, count: N]
 
