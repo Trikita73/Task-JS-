@@ -31,7 +31,7 @@ export default class Cart {
 
     updateProductCount(productId, amount) {
         let cartItem = this.cartItems.find(item => item.product.id == productId);
-        cartItem.count +=amount;
+        cartItem.count += amount;
 
         if (cartItem.count == 0) {
             this.cartItems.splice(this.cartItems.indexOf(cartItem), 1);
@@ -120,9 +120,9 @@ export default class Cart {
 
         this.modalBody.append(this.renderOrderForm());
 
-        this.modalBody.addEventlistener("click", this.onModalBodyClick);
+        this.modalBody.addEventListener("click", this.onModalBodyClick);
 
-        this.modalBody.querySelector("form").onsumbit = (event) => this.onSubmit(event);
+        this.modalBody.querySelector("form").onsubmit = (event) => this.onSubmit(event);
 
         this.modal.setBody(this.modalBody);
 
@@ -179,7 +179,7 @@ export default class Cart {
         let form = this.modalBody.querySelector('.cart-form');
         let userData = new FormData(form);
 
-        await fetch('https://httpbin.org/post', { metod: 'POST', body: userData });
+        await fetch('https://httpbin.org/post', { method: 'POST', body: userData });
 
         this.modal.setTitle("Success!");
         this.modalBody

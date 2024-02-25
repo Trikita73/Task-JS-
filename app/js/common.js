@@ -10012,6 +10012,319 @@ onSubmit(event)
 // <<<< решение:
 
 /*
+Доп. файлы:
 
+index10:
+path: './js/index10.js';
 
+index4:
+path: './index4.js';
+
+index7:
+path: './js/index7.js';
+
+create-element.js:
+path: '../libs/lib/create-elements.js'
+
+escape-html.js
+path: '../libs/lib/escape-html.js';
+
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Бангкок Экспресс: Корзина</title>
+
+	<link rel="stylesheet" href="/css/styles/common.css" />
+	<link rel="stylesheet" href="/css/bucket/index.css">
+</head>
+<style>
+.cart-icon {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 57px;
+  height: 63px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.cart-icon.shake {
+  animation: cartshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  backface-visibility: hidden;
+  transform-origin: top right;
+}
+
+.cart-icon__inner {
+  background: url("/img/icons/cart-icon.svg") center no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.cart-icon_visible {
+  display: block;
+}
+
+.cart-icon__count {
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 900;
+  color: var(--color-pink);
+  margin-top: 16px;
+}
+
+.cart-icon__price {
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: var(--color-black);
+  margin: 0;
+}
+
+@keyframes cartshake {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cart-icon {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    transform: none;
+    z-index: 95;
+  }
+
+  .cart-icon:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    border: 55px solid transparent;
+    border-right-color: var(--color-pink);
+    border-top-color: var(--color-pink);
+    z-index: 1;
+  }
+
+  .cart-icon__inner {
+    position: relative;
+    z-index: 2;
+  }
+}
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  display: block;
+}
+
+.is-modal-open {
+  overflow: hidden;
+}
+
+.modal__overlay {
+  height: 100%;
+  width: 100%;
+  background-color: #918f79;
+  opacity: 0.8;
+}
+
+.modal__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 994px;
+  width: 100%;
+  background-color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__header {
+  position: relative;
+  padding: 30px 80px;
+}
+
+.modal__body {
+  padding: 0 80px 64px;
+}
+
+.modal__body-inner {
+  background-color: var(--color-black-dark);
+  text-align: center;
+  padding: 40px 33px;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--color-body);
+  font-family: var(--font-primary), sans-serif;
+  font-style: italic;
+}
+
+.modal__body-inner img {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.modal__buttons {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.modal__title {
+  font-size: 36px;
+  line-height: 1.8;
+  font-family: var(--font-secondary), sans-serif;
+  font-weight: 400;
+  color: var(--color-yellow);
+  text-shadow: 3px 3px var(--color-pink);
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modal__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  opacity: 0.8;
+}
+
+@media all and (max-width: 767px) {
+  .modal__body {
+    padding: 0 0 45px;
+    flex-grow: 1;
+  }
+
+  .modal__inner {
+    top: 0;
+    left: 0;
+    transform: none;
+    min-height: 100vh;
+  }
+
+  .modal__title {
+    font-size: 28px;
+    margin: 0;
+  }
+}
+</style>
+<body>
+	<header class="header container">
+		<h1 class="header logo">Бангкок Экспресс</h1>
+		<h3 class="subheading">Отличная еда・Бесплатная доставка・Лучшие цены</h3>
+
+		<div data-cart-icon-holder>
+			<!--СЮДА ВСТАВЛЯЕТСЯ CART-ICON-->
+		</div>
+	</header>
+
+	<main>
+		<div class="container" style="padding-bottom: 40px;">
+			<h2 class="section-heading">Наше Меню</h2>
+
+			<button class="button" data-add-product-id="laab-kai-chicken-salad">Добавить товар 1</button>
+			<button class="button" data-add-product-id="som-tam-papaya-salad">Добавить товар 2</button>
+			<button class="button" data-add-product-id="tom-yam-kai">Добавить товар 3</button>
+		</div>
+	</main>
+
+	<script type="module">
+		import Cart from './js/index10.js';
+		import CartIcon from './js/index7.js';
+
+		let cartIcon = new CartIcon();
+		let cartIconHolder = document.querySelector('[data-cart-icon-holder]');
+		cartIconHolder.append(cartIcon.elem);
+
+		let products = [
+			{
+				"name": "Laab kai chicken salad",
+				"price": 10,
+				"category": "salads",
+				"image": "laab_kai_chicken_salad.png",
+				"id": "laab-kai-chicken-salad",
+				"spiciness": 2
+			},
+			{
+				"name": "Som tam papaya salad",
+				"price": 9.5,
+				"category": "salads",
+				"image": "som_tam_papaya_salad.png",
+				"id": "som-tam-papaya-salad",
+				"spiciness": 0
+			},
+			{
+				"name": "Tom yam kai",
+				"price": 7,
+				"category": "soups",
+				"image": "tom_yam.png",
+				"id": "tom-yam-kai",
+				"spiciness": 3
+			},
+		]
+
+		let cart = new Cart(cartIcon);
+
+		document.addEventListener('click', (event) => {
+			let button = event.target.closest('.button');
+			if (!button) {
+				return;
+			}
+
+			let addProductId = button.dataset.addProductId;
+			let productToAdd = products.find((product) => product.id === addProductId);
+
+			if (productToAdd) {
+				cart.addProduct(productToAdd);
+			}
+		})
+	</script>
+</body>
+</html>
 */
