@@ -10328,3 +10328,115 @@ HTML:
 </body>
 </html>
 */
+
+
+/* << Асинхронность и промисы >> */
+
+/* TASK_1 */
+
+/*
+Вывод каждую секунду:
+
+Напишите функцию printNumbers(from, to), которая выводит число каждую 
+секунду, начиная от from и заканчивая to.
+
+Сделайте два варианта решения.
+
+1) Используя setInterval.
+2) Используя рекурсивный setTimeout.
+
+*/
+
+// <<<< решение:
+
+/*
+Используем setInterval:
+
+function printNumbers(from, to) {
+	let current = from;
+
+	let timerId = setInterval(function() {
+		alert(current);
+		if (current == to) {
+			clearInterval(timerId);
+		}
+		current++;
+	}, 1000);
+}
+
+// использование:
+printNumbers(5, 10);
+
+Используем рекурсивный setTimeout:
+
+function printNumbers(from, to) {
+	let current = from;
+
+	setTimeout(function go() {
+		alert(current);
+		if (current < to) {
+			setTimeout(go, 1000);
+		}
+		current++;
+	}, 1000);
+}
+
+// использование:
+printNumbers(5, 10);
+
+то в обоих решениях есть начальная задержка перед первым выводом. 
+Она составляет одну секунду (1000мс). Если мы хотим, чтобы функция 
+запускалась сразу же, то надо добавить такой запуск вручную на 
+отдельной строке, вот так:
+
+function printNumbers(from, to) {
+	let current = from;
+
+	function go() {
+		alert(current);
+		if (current == to) {
+			clearInterval(timerId);
+		}
+		current++;
+	}
+
+	go();
+	let timerId = setInterval(go, 1000);
+}
+
+// использование:
+printNumbers(5, 10);
+*/
+
+/* TASK_2 */
+
+/*
+Что покажет setTimeout?
+
+В приведённом ниже коде запланирован вызов setTimeout, 
+а затем выполняется сложное вычисление, для завершения которого 
+требуется более 100 мс.
+
+Когда будет выполнена запланированная функция?
+
+1) После цикла.
+2) Перед циклом.
+3) В начале цикла.
+
+Что покажет alert?
+
+let i = 0;
+
+setTimeout(() => alert(i), 100); // ?
+
+// предположим, что время выполнения этой функции >100 мс
+for(let j = 0; j < 100000000; j++) {
+  i++;
+}
+*/
+
+// <<<< решение:
+
+/*
+
+*/
