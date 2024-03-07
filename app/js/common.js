@@ -10813,14 +10813,14 @@ function demoGithubUser() {
 }
 
 demoGithubUser();
+
+Нужно заменить .catch на try...catch внутри 
+demoGithubUser и добавить async/await
 */
 
 // <<<< решение:
 
 /*
-
-*/
-
 class HttpError extends Error {
 	constructor(response) {
 		super(`${response.status} for ${response.url}`);
@@ -10864,3 +10864,54 @@ async function demoGithubUser() {
 }
 
 demoGithubUser();
+*/
+
+
+/* TASK_9 */
+
+/*
+Вызовите async–функцию из "обычной"
+
+Есть «обычная» функция. Как можно внутри неё получить результат 
+выполнения async–функции?
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // ...что здесь написать?
+  // чтобы вызвать wait() и дождаться результата "10" от async–функции
+  // не забывайте, здесь нельзя использовать "await"
+}
+
+P.S. Технически задача очень простая, но этот вопрос часто задают 
+разработчики, недавно познакомившиеся с async/await.
+
+Это тот случай, когда понимание внутреннего устройства 
+работы async/await очень кстати.
+*/
+
+// <<<< решение:
+
+/*
+Здесь нужно думать о вызове функции async, как о промисе. 
+И просто воспользоваться .then:
+
+async function wait() {
+	await new Promise(reselve => setTimeout(reselve, 1000));
+
+	return 10;
+}
+
+function f() {
+	// покажет 10 через 1 секунду
+	wait().then(result => alert(result));
+}
+
+f();
+*/
+
+
