@@ -11170,8 +11170,8 @@ for (let args of work.calls) {
 
 /*
 Доп файлы: 
-testcallapply.js;
-path: /js/testcallapply.js;
+testcallapply1.js;
+path: /js/testcallapply1.js;
 
 Обертка, возвращаемая spy(f), должна хранить все аргументы, 
 и затем использовать f.apply для переадресации вызова.
@@ -11199,3 +11199,64 @@ HTML:
 </html>
 */
 
+
+/* TASK_15 */
+
+/*
+Задерживающий декоратор
+
+Создайте декоратор delay(f, ms), который 
+задерживает каждый вызов f на ms миллисекунд. Например:
+
+function f(x) {
+  alert(x);
+}
+
+// создаём обёртки
+let f1000 = delay(f, 1000);
+let f1500 = delay(f, 1500);
+
+f1000("test"); // показывает "test" после 1000 мс
+f1500("test"); // показывает "test" после 1500 мс
+
+Другими словами, delay(f, ms) возвращает 
+вариант f с «задержкой на ms мс».
+
+В приведённом выше коде f – функция с одним аргументом, 
+но ваше решение должно передавать все аргументы и контекст this.
+*/
+
+// <<<< решение:
+
+/*
+Доп файлы: 
+testcallapply2.js;
+path: /js/testcallapply2.js;
+
+
+Обратите внимание, как здесь используется функция-стрелка. 
+Как мы знаем, функция-стрелка не имеет собственных this и arguments, 
+поэтому f.apply(this, arguments) берет this и arguments из обёртки.
+
+Если мы передадим обычную функцию, setTimeout вызовет её без 
+аргументов и с this=window (при условии, что код 
+	выполняется в браузере).
+
+HTML:
+<!doctype html>
+<script src="https://ru.js.cx/test/libs.js"></script>
+<script src="js/testcallapply2.js"></script>
+<script>
+
+	function delay(f, ms) {
+	
+		return function() {
+			setTimeout(() => f.apply(this, arguments), ms);
+		};
+	
+	};
+  
+</script>
+
+</html>
+*/
