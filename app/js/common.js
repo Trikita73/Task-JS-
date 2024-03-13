@@ -11497,3 +11497,87 @@ HTML:
 
 </html>
 */
+
+
+/* TASK_1_CSS */
+
+/*
+Анимировать самолёт (CSS)
+
+Реализуйте анимацию (клик на самолёт):
+1) При нажатии картинка изменяет размеры с 40x24px до 400x240px 
+(увеличивается в 10 раз).
+2) Время анимации 3 секунды.
+3) По окончании анимации вывести сообщение: «Анимация закончилась!».
+4) Если во время анимации будут дополнительные клики по 
+картинке – они не должны ничего «сломать».
+
+CSS для анимации двух свойств width и height:
+
+//original class 
+
+#flyjet {
+	transition: all 3s;
+  }
+  
+// JS adds .growing 
+  #flyjet.growing {
+	width: 400px;
+	height: 240px;
+  }
+
+При разработке следует учитывать, что событие transitionend 
+сработает два раза – для каждого свойства (высота и ширина). 
+Таким образом, если не предусмотреть дополнительную проверку, 
+тогда сообщение появится два раза.
+*/
+
+// <<<< решение:
+
+/*
+HTML:
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    img {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    #flyjet {
+      width: 40px;
+      height: 24px;
+	  transition: all 3s;
+    }
+	#flyjet.growing {
+		width: 400px;
+		height: 240px;
+	}
+  </style>
+</head>
+
+<body>
+
+  	<img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+
+	<script>
+		let ended = false;
+
+		flyjet.onclick = function() {
+			flyjet.addEventListener('transitionend', function() {
+				if (!ended) {
+					ended = true;
+					alert('Анимация закончилась!');
+				}
+			});
+
+			flyjet.classList.add('growing');
+		}
+	</script>
+</body>
+
+</html>
+*/
