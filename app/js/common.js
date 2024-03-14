@@ -11558,7 +11558,6 @@ HTML:
 	}
   </style>
 </head>
-
 <body>
 
   	<img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
@@ -11578,6 +11577,66 @@ HTML:
 		}
 	</script>
 </body>
+</html>
+*/
 
+/* TASK_2_CSS */
+
+/*
+Анимировать самолёт с перелётом (CSS)
+
+Модифицируйте решение предыдущей задачи TASK_1_CSS ,
+чтобы в процессе анимации изображение выросло больше своего 
+стандартного размера 400x240px («выпрыгнуло»), а затем вернулось к нему.
+
+В качестве исходного кода возьмите решение прошлой задачи.
+
+Для такой анимации необходимо подобрать правильную кривую Безье.
+Для того чтобы самолёт «выпрыгнул», она должна иметь y>1 на 
+одном из участков.
+
+Например, мы можем указать y>1 для обеих контрольных 
+точек: cubic-bezier(0.25, 1.5, 0.75, 1.5).
+*/
+
+// <<<< решение:
+
+/*
+HTML:
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    img {
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    #flyjet {
+      width: 40px;
+      height: 24px;
+      transition: all 3s cubic-bezier(0.25, 1.5, 0.75, 1.5);
+    }
+
+    #flyjet.growing {
+      width: 400px;
+      height: 240px;
+    }
+  </style>
+</head>
+<body>
+
+  	<img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+
+	<script>
+		flyjet.onclick = function() {
+			flyjet.classList.add('growing');
+		};
+	</script>
+
+</body>
 </html>
 */
